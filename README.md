@@ -39,16 +39,9 @@ npm start
 This will:
 
 - Install all dependancies
+- Insert all initial data
 - Start the backend server on `PORT=5000`
 - Launch the frontend application
-
-## Insert Initial Data
-
-If you're running the project for the first time, you need to insert the initial data into the database. To do so, run:
-
-```sh
-npm run insert:all
-```
 
 ## Notes
 
