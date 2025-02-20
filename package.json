@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run install:all\" \"npm run server\" \"npm run client\"",
+    "prestart": "npm run install:all && npm run insert:all",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "node back/server.js",
     "client": "npm start --prefix front",
-    "install:all": "npm i && cd back && npm install && cd ../front && npm install",
+    "install:all": "npm install && cd back && npm install && cd ../front && npm install",
     "build": "cd front && npm run build",
     "heroku-postbuild": "cd front && npm install && npm run build",
     "insert:all": "node scripts/insertData.js"

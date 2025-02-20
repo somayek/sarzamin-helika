@@ -104,7 +104,6 @@ const QuestionnaireForm = () => {
 
   const handleSubmit = async (index) => {
     const request = requests[index];
-    setIsSubmitting(true);
 
     try {
       const submittedAnswersArray = Object.values(request.selectedAnswers);
@@ -136,7 +135,6 @@ const QuestionnaireForm = () => {
     } catch (error) {
       console.error("Error submitting answers:", error);
     }
-    setIsSubmitting(false);
   };
 
   if (allQuestions.length === 0 || answers.length === 0 || rules.length === 0) {
