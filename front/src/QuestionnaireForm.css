@@ -1,0 +1,300 @@
+/* QuestionnaireForm.css */
+
+.App h1 {
+  font-family: "Arial", sans-serif; /* Modern, clean font */
+  font-size: 3rem; /* Larger font size for emphasis */
+  color: #634528; /* Soft beige/taupe color for text */
+  text-align: center; /* Center the heading */
+  letter-spacing: 1.5px; /* Slight letter spacing for a refined look */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1); /* Light shadow for subtle depth */
+  padding: 20px; /* Padding around the text */
+  background: #f1f1f1; /* Light neutral grey background */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow around the heading */
+  margin-top: 20px; /* Space above the heading */
+}
+
+body,
+.questionnaire-form {
+  direction: rtl;
+  text-align: right;
+}
+
+.questionnaire-form {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.questionnaire-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.form-title {
+  color: #4a90e2;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.question {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.question-label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.input-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input-row select,
+.input-row input {
+  width: 48%;
+  padding: 12px;
+  font-size: 16px;
+  text-align: right;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.input-row select option {
+  text-align: right;
+}
+
+.answered-questions {
+  margin-bottom: 20px;
+}
+
+.answered-question {
+  background-color: #f4f4f4;
+  padding: 12px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.answer-select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+}
+
+.submit-button {
+  padding: 12px 25px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  background-color: #357ab7;
+}
+
+.submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.documents {
+  margin-top: 20px;
+}
+
+.document-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.document-item {
+  padding: 12px;
+  background-color: #f4f4f4;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #333;
+}
+/* QuestionnaireForm.css */
+
+/* Styling for QuestionSelector */
+.question-selector {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.question-label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.answer-select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  text-align: right;
+  box-sizing: border-box;
+}
+
+.answer-select:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+.answer-select option {
+  text-align: right;
+}
+
+/* QuestionnaireForm.css */
+
+/* Styling for submit and action buttons */
+.submit-button,
+.request-button {
+  padding: 12px 24px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+}
+
+.submit-button:hover,
+.request-button:hover {
+  background-color: #357ab7;
+  transform: translateY(-2px);
+}
+
+.submit-button:disabled,
+.request-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.submit-button:focus,
+.request-button:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+}
+
+/* Additional padding for consistent button appearance */
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+/* QuestionnaireForm.css */
+
+/* Styling for the answered questions section */
+.answered-questions {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.answered-questions h3 {
+  color: #4a90e2;
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.answered-questions ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.answered-question {
+  background-color: #f4f4f4;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-left: 5px solid #4a90e2;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.answered-question:hover {
+  background-color: #e4e4e4;
+  transform: translateY(-2px);
+}
+
+.answered-question span {
+  font-weight: bold;
+  color: #333;
+}
+
+.answered-question .answer {
+  color: #555;
+}
+/* QuestionnaireForm.css */
+
+/* Styling for the documents section */
+.documents {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.documents h3 {
+  color: #4a90e2;
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.document-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.document-item {
+  background-color: #f4f4f4;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-left: 5px solid #4a90e2;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.document-item:hover {
+  background-color: #e4e4e4;
+  transform: translateY(-2px);
+}
+
+.document-item .document-text {
+  color: #555;
+  font-weight: normal;
+}

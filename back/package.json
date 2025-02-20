@@ -5,8 +5,8 @@
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "node server.js",
-    "client": "npm start --prefix ui",
-    "install:all": "npm install && cd ui && npm install",
+    "client": "npm start --prefix ../ui",
+    "install:all": "npm install && cd ../ui && npm install",
     "build": "cd ui && npm run build",
     "heroku-postbuild": "cd ui && npm install && npm run build"
   },

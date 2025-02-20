@@ -45,6 +45,7 @@ ui/node_modules/
 back/node_modules/
 ui/package-lock.json
 back/package-lock.json
+package-lock.json
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
@@ -135,4 +136,3 @@ dist
 
 .DS_Store
 .idea
-.expo
