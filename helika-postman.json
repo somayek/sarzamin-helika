@@ -1,0 +1,243 @@
+{
+  "info": {
+    "_postman_id": "12345678-abcd-efgh-ijkl-1234567890ab",
+    "name": "Passport Application CRUD",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/users"
+          }
+        },
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/users",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"name\": \"John Doe\", \"email\": \"john@example.com\", \"phone\": \"1234567890\", \"passport_status\": \"New\" }"
+            }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/users/{{userId}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"name\": \"John Updated\", \"email\": \"john.updated@example.com\" }"
+            }
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/users/{{userId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Questions",
+      "item": [
+        {
+          "name": "Get All Questions",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/questions"
+          }
+        },
+        {
+          "name": "Create Question",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/questions",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"text\": \"Have you ever had a passport?\", \"input_type\": \"radio\", \"options\": [\"Yes\", \"No\"] }"
+            }
+          }
+        },
+        {
+          "name": "Update Question",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/questions/{{questionId}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"text\": \"Updated Question Text\" }"
+            }
+          }
+        },
+        {
+          "name": "Delete Question",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/questions/{{questionId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Answers",
+      "item": [
+        {
+          "name": "Get All Answers",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/answers"
+          }
+        },
+        {
+          "name": "Create Answer",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/answers",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"user_id\": \"{{userId}}\", \"question_id\": \"{{questionId}}\", \"answer_value\": \"Yes\" }"
+            }
+          }
+        },
+        {
+          "name": "Update Answer",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/answers/{{answerId}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"answer_value\": \"No\" }"
+            }
+          }
+        },
+        {
+          "name": "Delete Answer",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/answers/{{answerId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Rules",
+      "item": [
+        {
+          "name": "Get All Rules",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/rules"
+          }
+        },
+        {
+          "name": "Create Rule",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/rules",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"question_id\": \"{{questionId}}\", \"answer_value\": \"Yes\", \"required_steps\": [\"{{stepId}}\"], \"required_documents\": [\"{{documentId}}\"] }"
+            }
+          }
+        },
+        {
+          "name": "Update Rule",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/rules/{{ruleId}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"answer_value\": \"No\" }"
+            }
+          }
+        },
+        {
+          "name": "Delete Rule",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/rules/{{ruleId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Steps",
+      "item": [
+        {
+          "name": "Get All Steps",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/steps"
+          }
+        },
+        {
+          "name": "Create Step",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/steps",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"text\": \"Visit Passport Office\" }"
+            }
+          }
+        },
+        {
+          "name": "Delete Step",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/steps/{{stepId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Documents",
+      "item": [
+        {
+          "name": "Get All Documents",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/documents"
+          }
+        },
+        {
+          "name": "Create Document",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/documents",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"name\": \"Birth Certificate\", \"description\": \"Proof of Birth\" }"
+            }
+          }
+        },
+        {
+          "name": "Delete Document",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/documents/{{documentId}}"
+          }
+        }
+      ]
+    }
+  ]
+}
