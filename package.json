@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "concurrently \"npm run install:all\" \"npm run server\" \"npm run client\"",
     "server": "node back/server.js",
     "client": "npm start --prefix front",
     "install:all": "npm i && cd back && npm install && cd ../front && npm install",

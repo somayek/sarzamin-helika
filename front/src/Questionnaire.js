@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "./QuestionnaireForm.css"; // Import the CSS file
+import "./QuestionnaireForm.css";
 import RequestBlock from "./RequestBlock";
-import QuestionSelector from "./QuestionSelector";
 
 const QuestionnaireForm = () => {
   const [requests, setRequests] = useState([]);
@@ -9,7 +8,6 @@ const QuestionnaireForm = () => {
   const [answers, setAnswers] = useState([]);
   const [rules, setRules] = useState([]);
   const [documents, setDocuments] = useState([]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const serverEndpoint = "http://localhost:5000/api";
 
   useEffect(() => {
