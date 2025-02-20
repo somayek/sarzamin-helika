@@ -41,9 +41,9 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
-ui/node_modules/
+front/node_modules/
 back/node_modules/
-ui/package-lock.json
+front/package-lock.json
 back/package-lock.json
 package-lock.json
 

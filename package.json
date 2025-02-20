@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run back/server\" \"npm run client\"",
-    "server": "node server.js",
-    "client": "npm start --prefix ui",
-    "install:all": "npm i && cd back && npm install && cd ../ui && npm install",
-    "build": "cd ui && npm run build",
-    "heroku-postbuild": "cd ui && npm install && npm run build"
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node back/server.js",
+    "client": "npm start --prefix front",
+    "install:all": "npm i && cd back && npm install && cd ../front && npm install",
+    "build": "cd front && npm run build",
+    "heroku-postbuild": "cd front && npm install && npm run build"
   },
   "keywords": [],
   "author": "",

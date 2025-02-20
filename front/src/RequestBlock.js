@@ -62,7 +62,7 @@ const RequestBlock = ({
 
       {request.answeredQuestions.length > 0 && (
         <div className="answered-questions">
-          <h3>Answered Questions</h3>
+          <h3>پاسخ های شما</h3>
           <ul>
             {request.answeredQuestions.map((item, idx) => (
               <li key={idx}>{`${item.question}: ${item.answer}`}</li>
@@ -87,7 +87,7 @@ const RequestBlock = ({
       )}
       {request.documents && request.documents.length > 0 && (
         <div className="documents">
-          <h3>Documents</h3>
+          <h3>مستندات لازم</h3>
           <ul className="document-list">
             {request.documents.map(
               (doc, i) =>
@@ -102,13 +102,13 @@ const RequestBlock = ({
       )}
       {request.charges && request.charges.length > 0 && (
         <div className="documents">
-          <h3>Charges</h3>
+          <h3>هزینه ها</h3>
           <ul className="document-list">
             {request.charges.map(
               (charge, i) =>
                 charge && (
                   <li key={i} className="document-item">
-                    <span className="document-text">{charge}</span>
+                    <span className="document-text">CAD {charge}</span>
                   </li>
                 )
             )}
