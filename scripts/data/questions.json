@@ -1,0 +1,86 @@
+[
+  {
+    "text": "وضعیت آخرین گذرنامه ایرانی متقاضی را اعلام فرمائید.",
+    "key": "latest_passport_status",
+    "input_type": "dropdown",
+    "options": [
+      "i_have_orig_passport",
+      "no_orig_passport_available",
+      "orig_passport_lost_or_stolen",
+      "orig_passport_damaged",
+      "orig_passport_handed_imm_office",
+      "no_orig_passport_yet"
+    ],
+    "next_question_key": "latest_id_status"
+  },
+  {
+    "text": "وضعیت شناسنامه متقاضی را اعلام فرمائید.",
+    "key": "latest_id_status",
+    "input_type": "dropdown",
+    "options": [
+      "have_orig_id",
+      "orig_id_not_available",
+      "dont_have_orig_id",
+      "not_received_id_yet"
+    ],
+    "next_question_key": "latest_military_service_status",
+    "first": false,
+    "last": false
+  },
+  {
+    "text": "وضعیت نظام وظیفه متقاضی را اعلام فرمایید.",
+    "key": "latest_military_service_status",
+    "input_type": "dropdown",
+    "options": [
+      "end_of_service_card",
+      "left_on_bail",
+      "left_before_18",
+      "qualifying_exit_stamp"
+    ],
+    "next_question_key": "latest_residence_status",
+    "first": false,
+    "last": false
+  },
+  {
+    "text": "وضعیت اقامت متقاضی چیست؟",
+    "key": "latest_residence_status",
+    "input_type": "dropdown",
+    "options": [
+      "residancy_citizen",
+      "residancy_pr",
+      "residancy_study_work_visa",
+      "residancy_tourist_visa",
+      "residancy_others"
+    ],
+    "next_question_key": "change_residence_status",
+    "first": false,
+    "last": false
+  },
+  {
+    "text": "آیا تمایل به تغییر محل اقامت درگذرنامه ایرانی دارید؟",
+    "key": "change_residence_status",
+    "input_type": "dropdown",
+    "options": ["change_residancy_yes", "change_residancy_no"],
+    "next_question_key": null,
+    "first": false,
+    "last": true
+  },
+  {
+    "text": "از آخرین خروج من بیش از سه سال گذشته است؟",
+    "key": "three_years_since_last_exit",
+    "input_type": "dropdown",
+    "options": ["exit_yes", "exit_no"],
+    "next_question_key": null,
+    "first": false,
+    "last": false
+  },
+  {
+    "text": "آیا شناسنامه خود را عکسدار کرده اید؟",
+    "key": "id_has_photo_yet",
+    "input_type": "dropdown",
+    "options": ["id_photo_yes", "id_photo_no"],
+    "next_question_key": null,
+    "first": false,
+    "last": false
+  }
+]

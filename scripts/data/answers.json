@@ -1,0 +1,184 @@
+[
+  {
+    "text": "اصل گذرنامه را همراه خود دارم",
+    "key": "i_have_orig_passport",
+    "next_question_key": null,
+    "documents": [
+      "passport_latest_first_page_scan",
+      "passport_first_page_video"
+    ],
+    "charges": [],
+    "order": 1
+  },
+  {
+    "text": "اصل گذرنامه موجود ولی در دسترس نمی باشد",
+    "key": "no_orig_passport_available",
+    "charges": [],
+    "documents": [],
+    "order": 2
+  },
+  {
+    "text": "گذرنامه مفقود ای و سرقت شده است",
+    "key": "orig_passport_lost_or_stolen",
+    "charges": [],
+    "documents": [],
+
+    "order": 3
+  },
+  {
+    "text": "گذرنامه موجود ولی .مخدوش شده است",
+    "charges": [],
+    "documents": [],
+    "key": "orig_passport_damaged",
+    "order": 4
+  },
+  {
+    "text": "گذرنامه را تحویل اداره مهاجرت داده ام ",
+    "charges": [],
+    "documents": [],
+    "key": "orig_passport_handed_imm_office",
+    "order": 5
+  },
+  {
+    "text": "تا به حال گذرنامه نگرفته ام",
+    "key": "no_orig_passport_yet",
+    "charges": [],
+    "documents": [],
+    "order": 6
+  },
+  {
+    "text": "کارت پایان خدمت یا معافیت دایم دارم",
+    "charges": [],
+    "documents": [],
+    "key": "end_of_service_card",
+    "order": 1
+  },
+  {
+    "text": "با وثیقه از کشور خارج شده ام",
+    "key": "left_on_bail",
+    "charges": [],
+    "documents": ["passport_renewable_contat_us"],
+    "order": 2
+  },
+  {
+    "text": " قبل از سن ۱۸ سالگی از کشور خارج شده ام",
+    "key": "left_before_18",
+    "documents": [],
+    "charges": [],
+    "next_question_key": "three_years_since_last_exit",
+    "order": 3
+  },
+  {
+    "text": "قبلا با مهر خروج مشمولین به ایران سفر کرده ام",
+    "key": "qualifying_exit_stamp",
+    "documents": [],
+    "charges": [],
+    "next_question_key": "three_years_since_last_exit",
+    "order": 4
+  },
+  {
+    "text": "اصل شناسنامه را همراه خود دارم.",
+    "documents": ["id_all_pages_scan", "id_all_pages_video"],
+    "charges": [],
+    "key": "have_orig_id",
+    "order": 1
+  },
+  {
+    "text": "اصل شناسنامه موجود ولی در دسترس نمی باشد.",
+    "documents": [],
+    "charges": [],
+    "key": "orig_id_not_available",
+    "order": 2
+  },
+  {
+    "text": "اصل شناسنامه را ندارم. ",
+    "charges": [],
+    "documents": [],
+    "key": "dont_have_orig_id",
+    "order": 3
+  },
+  {
+    "text": "تا به حال شناسنامه نگرفته ام.",
+    "charges": [],
+    "documents": [],
+    "key": "not_received_id_yet",
+    "order": 4
+  },
+  {
+    "text": "شهروند کانادا",
+    "documents": ["passport_canadian_scan"],
+    "charges": [],
+    "key": "residancy_citizen",
+    "order": 1
+  },
+  {
+    "text": "مقیم دایم",
+    "documents": ["pr_valid_scan"],
+    "charges": [],
+    "key": "residancy_pr",
+    "order": 2
+  },
+  {
+    "text": "اجازه کار یا تحصیل",
+    "documents": ["work_study_visa_valid_scan"],
+    "key": "residancy_study_work_visa",
+    "charges": [],
+    "order": 3
+  },
+  {
+    "text": "ویزای توریستی",
+    "documents": ["tourist_visa_scan"],
+    "key": "residancy_tourist_visa",
+    "charges": [],
+    "order": 4
+  },
+  {
+    "text": "سایر موارد",
+    "documents": ["residancy_doc_valid_scan"],
+    "key": "residancy_others",
+    "charges": [],
+    "order": 5
+  },
+  {
+    "text": "بلی",
+    "documents": [],
+    "key": "change_residancy_yes",
+    "charges": [30],
+    "order": 1
+  },
+  {
+    "text": "خیر",
+    "documents": [],
+    "charges": [],
+    "key": "change_residancy_no",
+    "order": 2
+  },
+  {
+    "text": "بلی",
+    "key": "exit_yes",
+    "charges": [80],
+    "documents": ["passport_register_exit_stamp"],
+    "order": 1
+  },
+  {
+    "text": "خیر",
+    "key": "exit_no",
+    "charges": [],
+    "documents": ["passport_renewable_contat_us"],
+    "order": 2
+  },
+  {
+    "text": "بلی",
+    "key": "id_photo_yes",
+    "charges": [],
+    "documents": [],
+    "order": 1
+  },
+  {
+    "text": "خیر",
+    "key": "id_photo_no",
+    "charges": [],
+    "documents": [],
+    "order": 2
+  }
+]

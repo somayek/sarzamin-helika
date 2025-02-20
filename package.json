@@ -8,13 +8,15 @@
     "client": "npm start --prefix front",
     "install:all": "npm i && cd back && npm install && cd ../front && npm install",
     "build": "cd front && npm run build",
-    "heroku-postbuild": "cd front && npm install && npm run build"
+    "heroku-postbuild": "cd front && npm install && npm run build",
+    "insert:all": "node scripts/insertData.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "mongoose": "^8.10.1"
   }
 }
