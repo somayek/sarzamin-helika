@@ -1,5 +1,26 @@
 [
   {
+    "text": "جنسیت",
+    "key": "input_sex",
+    "input_type": "dropdown",
+    "options": ["sex_male", "sex_female"],
+    "next_question_key": "input_age"
+  },
+  {
+    "text": "سن",
+    "key": "input_age",
+    "input_type": "dropdown",
+    "options": ["below_15", "15_18", "18_50", "above_50"],
+    "next_question_key": "input_marital_status"
+  },
+  {
+    "text": "وضعیت تاهل",
+    "key": "input_marital_status",
+    "input_type": "dropdown",
+    "options": ["single", "married"],
+    "next_question_key": ""
+  },
+  {
     "text": "وضعیت آخرین گذرنامه ایرانی متقاضی را اعلام فرمائید.",
     "key": "latest_passport_status",
     "input_type": "dropdown",

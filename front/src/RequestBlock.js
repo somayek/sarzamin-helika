@@ -11,7 +11,6 @@ const RequestBlock = ({
   allQuestions,
   answers,
   uniqueApplications,
-  ageRanges,
 }) => {
   return (
     <div className="request-block">
@@ -23,14 +22,6 @@ const RequestBlock = ({
           value={request.name}
           onChange={(e) => handleInputChange(index, "name", e.target.value)}
         />
-        <select
-          value={request.sex}
-          onChange={(e) => handleInputChange(index, "sex", e.target.value)}
-        >
-          <option value="">انتخاب جنسیت</option>
-          <option value="male">مرد</option>
-          <option value="female">زن</option>
-        </select>
       </div>
 
       <div className="input-row">
@@ -42,17 +33,6 @@ const RequestBlock = ({
         >
           <option value="">انتخاب برنامه</option>
           {uniqueApplications.map((app, i) => (
-            <option key={i} value={app.value}>
-              {app.text}
-            </option>
-          ))}
-        </select>
-        <select
-          value={request.age}
-          onChange={(e) => handleInputChange(index, "age", e.target.value)}
-        >
-          <option value="">سن</option>
-          {ageRanges.map((app, i) => (
             <option key={i} value={app.value}>
               {app.text}
             </option>

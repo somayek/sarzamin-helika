@@ -55,6 +55,23 @@ const QuestionnaireForm = () => {
     ]);
   };
 
+  const link = (questionList) => {
+    const linkedQuestions = questionList
+      .map((key) => allQuestions.find((q) => q.key === key))
+      .filter(Boolean); // Remove any undefined values in case a key isn't found
+
+    for (let i = 0; i < linkedQuestions.length - 1; i++) {
+      linkedQuestions[i].next_question_key = linkedQuestions[i + 1].key;
+    }
+
+    // Ensure the last question has no next_question_key
+    if (linkedQuestions.length > 0) {
+      linkedQuestions[linkedQuestions.length - 1].next_question_key = null;
+    }
+
+    return linkedQuestions;
+  };
+
   const handleInputChange = (index, field, value) => {
     const updatedRequests = [...requests];
     updatedRequests[index][field] = value;
@@ -107,10 +124,6 @@ const QuestionnaireForm = () => {
 
     try {
       const submittedAnswersArray = Object.values(request.selectedAnswers);
-      // const documents = request.rule?.documents;
-      // console.log("submittedAnswersArray, ", submittedAnswersArray);
-      // console.log("documents", documents);
-      // debugger;
       const ruleCharges = request.rule?.charges;
       const ruleDocuments = request.rule?.documents;
       const answerDocuments = submittedAnswersArray.flatMap(
@@ -142,32 +155,29 @@ const QuestionnaireForm = () => {
   }
 
   const uniqueApplications = [{ value: "passport", text: "درخواست گذرنامه" }];
-  const ageRanges = [
-    { value: "below_15", text: " زیر ۱۵سال تمام" },
-    { value: "15_18", text: "۱۵ تا ۱۸سال تمام" },
-    { value: "18_50", text: "بین۱۸ تا ۵۰ سال" },
-    { value: "above_50", text: "۵۰ سال به بالا" },
-  ];
+  // const ageRanges = [
+  //   { value: "below_15", text: " زیر ۱۵سال تمام" },
+  //   { value: "15_18", text: "۱۵ تا ۱۸سال تمام" },
+  //   { value: "18_50", text: "بین۱۸ تا ۵۰ سال" },
+  //   { value: "above_50", text: "۵۰ سال به بالا" },
+  // ];
 
   return (
     <div className="questionnaire-form">
-      <h2>درخواست پاسپورت</h2>
+      {/* <h2>درخواست پاسپورت</h2> */}
       <button onClick={addRequest} className="add-request-button">
         افزودن درخواست جدید
       </button>
       {requests.map((request, index) => {
-        if (request.sex && request.age && request.application) {
-          const ruleName = `${request.application}_${request.sex}_${request.age}`;
+        if (request.application) {
+          const ruleName = `${request.application}`;
           request.rule = rules.find((q) => q.application === ruleName);
           if (!request.rule) {
             console.warn(`No rule found for ${ruleName}`);
             return null;
           }
 
-          request.questions = allQuestions.filter((q) =>
-            request.rule?.questions?.includes(q.key)
-          );
-
+          request.questions = link(request.rule?.questions);
           if (
             !request.currentQuestion &&
             request.answeredQuestions.length === 0
@@ -175,6 +185,7 @@ const QuestionnaireForm = () => {
             request.currentQuestion = request.questions[0];
           }
         }
+        console.log(request.questions);
         const currentAnswers = request.currentQuestion
           ? answers.filter((a) =>
               request.currentQuestion?.options?.includes(a.key)
@@ -193,7 +204,7 @@ const QuestionnaireForm = () => {
             allQuestions={allQuestions}
             answers={answers}
             uniqueApplications={uniqueApplications}
-            ageRanges={ageRanges}
+            // ageRanges={ageRanges}
           />
         );
       })}

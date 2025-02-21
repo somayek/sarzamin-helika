@@ -1,7 +1,9 @@
 [
   {
-    "application": "passport_male_18_50",
+    "application": "passport",
     "questions": [
+      "input_sex",
+      "input_age",
       "latest_passport_status",
       "latest_id_status",
       "latest_military_service_status",

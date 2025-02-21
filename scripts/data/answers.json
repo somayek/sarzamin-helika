@@ -1,5 +1,69 @@
 [
   {
+    "text": "مرد",
+    "key": "sex_male",
+    "next_question_key": null,
+    "documents": [],
+    "charges": [],
+    "order": 1
+  },
+  {
+    "text": "زن",
+    "key": "sex_female",
+    "next_question_key": "input_marital_status",
+    "documents": [],
+    "charges": [],
+    "order": 1
+  },
+  {
+    "text": "زیر ۱۵ سال",
+    "key": "below_15",
+    "next_question_key": null,
+    "documents": [],
+    "charges": [],
+    "order": 1
+  },
+  {
+    "text": "۱۵ تا ۱۸ سال",
+    "key": "15_18",
+    "next_question_key": null,
+    "documents": [],
+    "charges": [],
+    "order": 1
+  },
+  {
+    "text": "۱۸ تا ۵۰ سال",
+    "key": "18_50",
+    "next_question_key": null,
+    "documents": [],
+    "charges": [],
+    "order": 1
+  },
+  {
+    "text": "بالای ۵۰ سال",
+    "key": "above_50",
+    "next_question_key": null,
+    "documents": [],
+    "charges": [],
+    "order": 1
+  },
+  {
+    "text": "متاهل",
+    "key": "married",
+    "next_question_key": null,
+    "documents": [],
+    "charges": [],
+    "order": 1
+  },
+  {
+    "text": "مجرد",
+    "key": "single",
+    "next_question_key": null,
+    "documents": [],
+    "charges": [],
+    "order": 1
+  },
+  {
     "text": "اصل گذرنامه را همراه خود دارم",
     "key": "i_have_orig_passport",
     "next_question_key": null,
