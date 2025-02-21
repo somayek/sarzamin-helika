@@ -6,9 +6,7 @@ const QuestionnaireForm = () => {
   const [requests, setRequests] = useState([
     {
       name: "",
-      sex: "",
       application: "",
-      age: "",
       questions: [],
       currentQuestion: null,
       selectedAnswers: {},
@@ -89,6 +87,25 @@ const QuestionnaireForm = () => {
   }, []);
 
   const saveAuditLog = async (requests) => {
+    const refine = (req) => {
+      req.rule = req.rule.application;
+      req.documents = req.documents.map((d) => d.key);
+      req.questions = req.questions.map((d) => d.key);
+    };
+
+    // Create a deep copy of the requests array to avoid modifying the original
+    const logObj = requests.map((req) => {
+      const clonedReq = {
+        ...req,
+        documents: [...req.documents],
+        questions: [...req.questions],
+      };
+      refine(clonedReq);
+      return clonedReq;
+    });
+
+    console.log(logObj);
+
     try {
       const response = await fetch(`${serverEndpoint}/log`, {
         method: "POST",
@@ -96,7 +113,7 @@ const QuestionnaireForm = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          requests,
+          requests: logObj,
         }),
       });
 

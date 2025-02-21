@@ -8,9 +8,6 @@ const RuleComponent = ({ rule }) => {
       <strong>Documents:</strong> {rule.documents.join(", ")} <br />
       <strong>Charges:</strong> {rule.charges.join(", ")} <br />
       <strong>Created At:</strong> {new Date(rule.createdAt).toLocaleString()}{" "}
-      <br />
-      <strong>Updated At:</strong> {new Date(rule.updatedAt).toLocaleString()}{" "}
-      <br />
     </div>
   );
 };

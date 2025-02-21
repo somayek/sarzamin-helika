@@ -3,9 +3,7 @@ const mongoose = require("mongoose");
 const RequestSchema = new mongoose.Schema(
   {
     name: String,
-    sex: String,
     application: String,
-    age: String,
     selectedAnswers: {},
     documents: [String],
     charges: [String],
