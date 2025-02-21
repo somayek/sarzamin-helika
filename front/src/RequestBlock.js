@@ -31,7 +31,7 @@ const RequestBlock = ({
             handleInputChange(index, "application", e.target.value)
           }
         >
-          <option value="">انتخاب برنامه</option>
+          <option value="">نوع درخواست</option>
           {uniqueApplications.map((app, i) => (
             <option key={i} value={app.value}>
               {app.text}
