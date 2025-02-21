@@ -61,7 +61,7 @@ const RequestBlock = ({
         />
       )}
 
-      {request.currentQuestion === null && (
+      {request.application && request.currentQuestion === null && (
         <button onClick={() => handleSubmit(index)}>دریافت لیست مدارک</button>
       )}
       {request.documents && request.documents.length > 0 && (

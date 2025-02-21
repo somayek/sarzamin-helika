@@ -3,7 +3,21 @@ import "./QuestionnaireForm.css";
 import RequestBlock from "./RequestBlock";
 
 const QuestionnaireForm = () => {
-  const [requests, setRequests] = useState([]);
+  const [requests, setRequests] = useState([
+    {
+      name: "",
+      sex: "",
+      application: "",
+      age: "",
+      questions: [],
+      currentQuestion: null,
+      selectedAnswers: {},
+      answeredQuestions: [],
+      documents: [],
+      charges: [],
+      rule: "",
+    },
+  ]);
   const [allQuestions, setAllQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [rules, setRules] = useState([]);
@@ -61,7 +75,6 @@ const QuestionnaireForm = () => {
       linkedQuestions.forEach((question, index) => {
         question.next_question_key = linkedQuestions[index + 1]?.key || null;
       });
-      console.log(linkedQuestions);
       return linkedQuestions;
     },
     [allQuestions]
@@ -98,7 +111,6 @@ const QuestionnaireForm = () => {
           request.currentQuestion = allQuestions.find(
             (q) => q.key === selectedAnswer.next_question_key
           );
-          // insertAfter request.currentQuestion
           request.currentQuestion.next_question_key = temp;
         } else {
           request.currentQuestion = request.currentQuestion?.next_question_key
@@ -162,9 +174,6 @@ const QuestionnaireForm = () => {
 
   return (
     <div className="questionnaire-form">
-      <button onClick={addRequest} className="add-request-button">
-        افزودن درخواست جدید
-      </button>
       {requests.map((request, index) => {
         if (request.application) {
           request.rule =
@@ -200,6 +209,12 @@ const QuestionnaireForm = () => {
           />
         );
       })}
+      {requests[requests.length - 1].application &&
+        requests[requests.length - 1].currentQuestion === null && (
+          <button onClick={addRequest} className="add-request-button">
+            افزودن درخواست جدید
+          </button>
+        )}
     </div>
   );
 };
