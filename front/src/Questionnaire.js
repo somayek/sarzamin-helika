@@ -88,6 +88,27 @@ const QuestionnaireForm = () => {
     });
   }, []);
 
+  const saveAuditLog = async (requests) => {
+    try {
+      const response = await fetch(`${serverEndpoint}/log`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          requests,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save audit log");
+      }
+      console.log("Audit log saved successfully");
+    } catch (error) {
+      console.error("Error saving audit log:", error);
+    }
+  };
+
   const handleAnswerChange = useCallback(
     (index, questionKey, value) => {
       setRequests((prevRequests) => {
@@ -153,6 +174,7 @@ const QuestionnaireForm = () => {
             .filter(Boolean);
 
           request.charges = [...new Set([...ruleCharges, ...answerCharges])];
+          saveAuditLog(requests);
         } catch (error) {
           console.error("Error submitting answers:", error);
         }
@@ -160,7 +182,7 @@ const QuestionnaireForm = () => {
         return updatedRequests;
       });
     },
-    [answers, documents]
+    [answers, documents, requests]
   );
 
   const uniqueApplications = useMemo(

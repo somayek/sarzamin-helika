@@ -18,6 +18,7 @@ const answerRoutes = require("./src/routes/answerRoutes");
 const ruleRoutes = require("./src/routes/ruleRoutes");
 const stepRoutes = require("./src/routes/stepRoutes");
 const documentRoutes = require("./src/routes/documentRoutes");
+const requestRoutes = require("./src/routes/requestRoutes");
 
 // Use routes
 app.use("/api/users", userRoutes);
@@ -26,6 +27,7 @@ app.use("/api/answers", answerRoutes);
 app.use("/api/rules", ruleRoutes);
 app.use("/api/steps", stepRoutes);
 app.use("/api/documents", documentRoutes);
+app.use("/api/log", requestRoutes);
 
 // Serve static files from React in production
 if (process.env.NODE_ENV === "production") {
