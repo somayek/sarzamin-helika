@@ -34,8 +34,12 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const logs = await Log.find();
-  res.json(logs);
+  try {
+    const logs = await Log.find().populate("requests"); // Populate requests with actual JSON data
+    res.json(logs);
+  } catch (error) {
+    res.status(500).json({ error: "Server error", details: error.message });
+  }
 });
 
 router.delete("/all", async (req, res) => {

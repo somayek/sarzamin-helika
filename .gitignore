@@ -41,12 +41,14 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+admin-front/node_modules/
 front/node_modules/
 back/node_modules/
+admin-front/package-lock.json
 front/package-lock.json
 back/package-lock.json
 package-lock.json
-
+admin-front/.env
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 
