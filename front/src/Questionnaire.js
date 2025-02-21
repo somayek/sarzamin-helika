@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import "./QuestionnaireForm.css";
 import RequestBlock from "./RequestBlock";
 
@@ -13,20 +13,17 @@ const QuestionnaireForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const questionResponse = await fetch(`${serverEndpoint}/questions`);
-        const questionsData = await questionResponse.json();
+        const [questionsData, answersData, rulesData, documentsData] =
+          await Promise.all([
+            fetch(`${serverEndpoint}/questions`).then((res) => res.json()),
+            fetch(`${serverEndpoint}/answers`).then((res) => res.json()),
+            fetch(`${serverEndpoint}/rules`).then((res) => res.json()),
+            fetch(`${serverEndpoint}/documents`).then((res) => res.json()),
+          ]);
+
         setAllQuestions(questionsData);
-
-        const answerResponse = await fetch(`${serverEndpoint}/answers`);
-        const answersData = await answerResponse.json();
         setAnswers(answersData);
-
-        const rulesResponse = await fetch(`${serverEndpoint}/rules`);
-        const rulesData = await rulesResponse.json();
         setRules(rulesData);
-
-        const documentsResponse = await fetch(`${serverEndpoint}/documents`);
-        const documentsData = await documentsResponse.json();
         setDocuments(documentsData);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -36,9 +33,9 @@ const QuestionnaireForm = () => {
     fetchData();
   }, []);
 
-  const addRequest = () => {
-    setRequests([
-      ...requests,
+  const addRequest = useCallback(() => {
+    setRequests((prevRequests) => [
+      ...prevRequests,
       {
         name: "",
         sex: "",
@@ -53,131 +50,128 @@ const QuestionnaireForm = () => {
         rule: "",
       },
     ]);
-  };
+  }, []);
 
-  const link = (questionList) => {
-    const linkedQuestions = questionList
-      .map((key) => allQuestions.find((q) => q.key === key))
-      .filter(Boolean); // Remove any undefined values in case a key isn't found
+  const link = useCallback(
+    (questionList) => {
+      const linkedQuestions = questionList
+        .map((key) => allQuestions.find((q) => q.key === key))
+        .filter(Boolean);
 
-    for (let i = 0; i < linkedQuestions.length - 1; i++) {
-      linkedQuestions[i].next_question_key = linkedQuestions[i + 1].key;
-    }
+      linkedQuestions.forEach((question, index) => {
+        question.next_question_key = linkedQuestions[index + 1]?.key || null;
+      });
+      console.log(linkedQuestions);
+      return linkedQuestions;
+    },
+    [allQuestions]
+  );
 
-    // Ensure the last question has no next_question_key
-    if (linkedQuestions.length > 0) {
-      linkedQuestions[linkedQuestions.length - 1].next_question_key = null;
-    }
-
-    return linkedQuestions;
-  };
-
-  const handleInputChange = (index, field, value) => {
-    const updatedRequests = [...requests];
-    updatedRequests[index][field] = value;
-    setRequests(updatedRequests);
-  };
-
-  const handleAnswerChange = (index, questionKey, value) => {
+  const handleInputChange = useCallback((index, field, value) => {
     setRequests((prevRequests) => {
       const updatedRequests = [...prevRequests];
-      const request = updatedRequests[index];
-
-      if (request.selectedAnswers[questionKey]) {
-        return updatedRequests;
-      }
-
-      request.selectedAnswers[questionKey] = value;
-
-      const currentQuestion = allQuestions.find((q) => q.key === questionKey);
-      const selectedAnswer = answers.find((a) => a.key === value);
-
-      const newAnsweredQuestions = [
-        ...request.answeredQuestions,
-        { question: currentQuestion.text, answer: selectedAnswer.text },
-      ];
-
-      request.answeredQuestions = newAnsweredQuestions;
-      if (selectedAnswer?.next_question_key) {
-        const nextQuestion = allQuestions.find(
-          (q) => q.key === selectedAnswer.next_question_key
-        );
-        if (nextQuestion) {
-          nextQuestion.next_question_key =
-            request.currentQuestion.next_question_key;
-          request.currentQuestion = nextQuestion;
-        }
-      } else if (request.currentQuestion?.next_question_key) {
-        request.currentQuestion = allQuestions.find(
-          (q) => q.key === request.currentQuestion.next_question_key
-        );
-      } else {
-        request.currentQuestion = null;
-      }
-
+      updatedRequests[index][field] = value;
       return updatedRequests;
     });
-  };
+  }, []);
 
-  const handleSubmit = async (index) => {
-    const request = requests[index];
+  const handleAnswerChange = useCallback(
+    (index, questionKey, value) => {
+      setRequests((prevRequests) => {
+        const updatedRequests = [...prevRequests];
+        const request = updatedRequests[index];
 
-    try {
-      const submittedAnswersArray = Object.values(request.selectedAnswers);
-      const ruleCharges = request.rule?.charges;
-      const ruleDocuments = request.rule?.documents;
-      const answerDocuments = submittedAnswersArray.flatMap(
-        (answerKey) =>
-          answers.find((ans) => ans.key === answerKey)?.documents || []
-      );
-      const answerCharges = submittedAnswersArray.flatMap(
-        (answerKey) =>
-          answers.find((ans) => ans.key === answerKey)?.charges || []
-      );
+        if (request.selectedAnswers[questionKey]) return updatedRequests;
 
-      // Combine documents and remove duplicates
-      const allDocuments = [...new Set([...ruleDocuments, ...answerDocuments])];
+        request.selectedAnswers[questionKey] = value;
 
-      // Combine charges and remove duplicates
-      const allCharges = [...new Set([...ruleCharges, ...answerCharges])];
-      request.documents = allDocuments
-        .map((docKey) => documents.find((doc) => doc.key === docKey))
-        .filter(Boolean);
-      request.charges = allCharges;
-      setRequests([...requests]);
-    } catch (error) {
-      console.error("Error submitting answers:", error);
-    }
-  };
+        const currentQuestion = allQuestions.find((q) => q.key === questionKey);
+        const selectedAnswer = answers.find((a) => a.key === value);
 
-  if (allQuestions.length === 0 || answers.length === 0 || rules.length === 0) {
+        request.answeredQuestions.push({
+          question: currentQuestion.text,
+          answer: selectedAnswer.text,
+        });
+
+        if (selectedAnswer?.next_question_key) {
+          const temp = request.currentQuestion.next_question_key;
+          request.currentQuestion = allQuestions.find(
+            (q) => q.key === selectedAnswer.next_question_key
+          );
+          // insertAfter request.currentQuestion
+          request.currentQuestion.next_question_key = temp;
+        } else {
+          request.currentQuestion = request.currentQuestion?.next_question_key
+            ? allQuestions.find(
+                (q) => q.key === request.currentQuestion.next_question_key
+              )
+            : null;
+        }
+
+        return updatedRequests;
+      });
+    },
+    [allQuestions, answers]
+  );
+
+  const handleSubmit = useCallback(
+    (index) => {
+      setRequests((prevRequests) => {
+        const updatedRequests = [...prevRequests];
+        const request = updatedRequests[index];
+
+        try {
+          const submittedAnswersArray = Object.values(request.selectedAnswers);
+          const ruleDocuments = request.rule?.documents || [];
+          const ruleCharges = request.rule?.charges || [];
+
+          const answerDocuments = submittedAnswersArray.flatMap(
+            (answerKey) =>
+              answers.find((ans) => ans.key === answerKey)?.documents || []
+          );
+          const answerCharges = submittedAnswersArray.flatMap(
+            (answerKey) =>
+              answers.find((ans) => ans.key === answerKey)?.charges || []
+          );
+
+          request.documents = [
+            ...new Set([...ruleDocuments, ...answerDocuments]),
+          ]
+            .map((docKey) => documents.find((doc) => doc.key === docKey))
+            .filter(Boolean);
+
+          request.charges = [...new Set([...ruleCharges, ...answerCharges])];
+        } catch (error) {
+          console.error("Error submitting answers:", error);
+        }
+
+        return updatedRequests;
+      });
+    },
+    [answers, documents]
+  );
+
+  const uniqueApplications = useMemo(
+    () => [{ value: "passport", text: "درخواست گذرنامه" }],
+    []
+  );
+
+  if (!allQuestions.length || !answers.length || !rules.length) {
     return <div>Loading...</div>;
   }
 
-  const uniqueApplications = [{ value: "passport", text: "درخواست گذرنامه" }];
-  // const ageRanges = [
-  //   { value: "below_15", text: " زیر ۱۵سال تمام" },
-  //   { value: "15_18", text: "۱۵ تا ۱۸سال تمام" },
-  //   { value: "18_50", text: "بین۱۸ تا ۵۰ سال" },
-  //   { value: "above_50", text: "۵۰ سال به بالا" },
-  // ];
-
   return (
     <div className="questionnaire-form">
-      {/* <h2>درخواست پاسپورت</h2> */}
       <button onClick={addRequest} className="add-request-button">
         افزودن درخواست جدید
       </button>
       {requests.map((request, index) => {
         if (request.application) {
-          const ruleName = `${request.application}`;
-          request.rule = rules.find((q) => q.application === ruleName);
-          if (!request.rule) {
-            console.warn(`No rule found for ${ruleName}`);
-            return null;
-          }
+          request.rule =
+            rules.find((r) => r.application === request.application) || null;
+          if (!request.rule) return null;
 
-          request.questions = link(request.rule?.questions);
+          request.questions = link(request.rule.questions);
           if (
             !request.currentQuestion &&
             request.answeredQuestions.length === 0
@@ -185,10 +179,10 @@ const QuestionnaireForm = () => {
             request.currentQuestion = request.questions[0];
           }
         }
-        console.log(request.questions);
+
         const currentAnswers = request.currentQuestion
           ? answers.filter((a) =>
-              request.currentQuestion?.options?.includes(a.key)
+              request.currentQuestion.options?.includes(a.key)
             )
           : [];
 
@@ -201,10 +195,8 @@ const QuestionnaireForm = () => {
             handleAnswerChange={handleAnswerChange}
             handleSubmit={handleSubmit}
             currentAnswers={currentAnswers}
-            allQuestions={allQuestions}
             answers={answers}
             uniqueApplications={uniqueApplications}
-            // ageRanges={ageRanges}
           />
         );
       })}

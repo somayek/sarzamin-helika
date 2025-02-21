@@ -57,7 +57,6 @@ const RequestBlock = ({
           index={index}
           handleAnswerChange={handleAnswerChange}
           currentAnswers={currentAnswers}
-          allQuestions={allQuestions}
           answers={answers}
         />
       )}

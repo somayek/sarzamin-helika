@@ -5,8 +5,6 @@ const QuestionSelector = ({
   index,
   handleAnswerChange,
   currentAnswers,
-  allQuestions,
-  answers,
 }) => {
   return (
     <div className="question-selector">
