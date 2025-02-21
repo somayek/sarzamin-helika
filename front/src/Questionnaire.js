@@ -22,7 +22,7 @@ const QuestionnaireForm = () => {
   const [answers, setAnswers] = useState([]);
   const [rules, setRules] = useState([]);
   const [documents, setDocuments] = useState([]);
-  const serverEndpoint = "http://localhost:5000/api";
+  const serverEndpoint = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     const fetchData = async () => {

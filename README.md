@@ -25,7 +25,7 @@ Follow these steps to set up the project:
 
      ```sh
      MONGO_URI=mongodb://localhost:27017/helika
-     PORT=5000
+     PORT=5001
      ```
 
 ## Running the Project
@@ -40,7 +40,7 @@ This will:
 
 - Install all dependancies
 - Insert all initial data
-- Start the backend server on `PORT=5000`
+- Start the backend server on `PORT=5001`
 - Launch the frontend application
 
 ## Notes

@@ -48,7 +48,6 @@ admin-front/package-lock.json
 front/package-lock.json
 back/package-lock.json
 package-lock.json
-admin-front/.env
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 
@@ -80,7 +79,6 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
-.env
 .env.development.local
 .env.test.local
 .env.production.local

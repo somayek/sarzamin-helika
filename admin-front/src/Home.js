@@ -7,14 +7,14 @@ import RuleComponent from "./RuleComponent";
 export default function AdminPanel() {
   const [logs, setLogs] = useState([]);
   const [rules, setRules] = useState([]);
-  const [activeTab, setActiveTab] = useState("logs"); // Track which tab is active
+  const [activeTab, setActiveTab] = useState("logs");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/log")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/log`)
       .then((res) => res.json())
       .then((data) => setLogs(data));
 
-    fetch("http://localhost:5000/api/rules")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/rules`)
       .then((res) => res.json())
       .then((data) => setRules(data));
   }, []);
