@@ -63,7 +63,21 @@ const RequestBlock = ({
       {request.application && request.currentQuestion === null && (
         <button onClick={() => handleSubmit(index)}>دریافت لیست مدارک</button>
       )}
-
+      {request.documents && request.documents.length > 0 && (
+        <div className="documents">
+          <h3>مستندات لازم</h3>
+          <ul className="document-list">
+            {request.documents.map(
+              (doc, i) =>
+                doc.text && (
+                  <li key={i} className="document-item">
+                    <span className="document-text">{doc.text}</span>
+                  </li>
+                )
+            )}
+          </ul>
+        </div>
+      )}
       {request.charges && request.charges.length > 0 && (
         <div className="documents">
           <h3>هزینه ها</h3>
