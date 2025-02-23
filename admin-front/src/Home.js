@@ -14,11 +14,19 @@ const App = () => {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [documents, setDocuments] = useState([]);
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    totalPages: 1,
+    limit: 50,
+  });
+
   const backend = process.env.REACT_APP_BACKEND_URL;
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const logResponse = await fetch(`${backend}/log`);
+        const logResponse = await fetch(
+          `${backend}/log/paginated?page=${pagination.currentPage}&limit=${pagination.limit}`
+        );
         const ruleResponse = await fetch(`${backend}/rules`);
         const questionResponse = await fetch(`${backend}/questions`);
         const answerResponse = await fetch(`${backend}/answers`);
@@ -30,7 +38,11 @@ const App = () => {
         const answersData = await answerResponse.json();
         const documentsData = await documentResponse.json();
 
-        setLogs(logsData);
+        setLogs(logsData.logs);
+        setPagination((prevState) => ({
+          ...prevState,
+          totalPages: logsData.totalPages,
+        }));
         setRules(rulesData);
         setQuestions(questionsData);
         setAnswers(answersData);
@@ -41,7 +53,14 @@ const App = () => {
     };
 
     fetchData();
-  }, []);
+  }, [pagination.currentPage, backend, pagination.limit]);
+
+  const handlePageChange = (page) => {
+    setPagination((prevState) => ({
+      ...prevState,
+      currentPage: page,
+    }));
+  };
 
   return (
     <div>
@@ -54,7 +73,13 @@ const App = () => {
       </div>
 
       <div className="tab-content">
-        {activeTab === "logs" && <LogTab data={logs} />}
+        {activeTab === "logs" && (
+          <LogTab
+            data={logs}
+            pagination={pagination}
+            onPageChange={handlePageChange}
+          />
+        )}
         {activeTab === "rules" && <RuleTab data={rules} />}
         {activeTab === "questions" && <QuestionTab data={questions} />}
         {activeTab === "answers" && <AnswerTab data={answers} />}
@@ -64,7 +89,18 @@ const App = () => {
   );
 };
 
-const LogTab = ({ data }) => {
+const LogTab = ({ data, pagination, onPageChange }) => {
+  const handlePrevPage = () => {
+    if (pagination.currentPage > 1) {
+      onPageChange(pagination.currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (pagination.currentPage < pagination.totalPages) {
+      onPageChange(pagination.currentPage + 1);
+    }
+  };
   return (
     <div className="log-tab">
       <h2>Logs</h2>
@@ -76,6 +112,23 @@ const LogTab = ({ data }) => {
           </div>
         ))}
       </ul>
+      <div className="pagination">
+        <button
+          onClick={handlePrevPage}
+          disabled={pagination.currentPage === 1}
+        >
+          Previous
+        </button>
+        <span>
+          Page {pagination.currentPage} of {pagination.totalPages}
+        </span>
+        <button
+          onClick={handleNextPage}
+          disabled={pagination.currentPage === pagination.totalPages}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
