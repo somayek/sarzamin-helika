@@ -43,7 +43,7 @@ const QuestionnaireForm = () => {
     };
 
     fetchData();
-  }, []);
+  }, [serverEndpoint]);
 
   const addRequest = useCallback(() => {
     setRequests((prevRequests) => [
@@ -85,46 +85,48 @@ const QuestionnaireForm = () => {
       return updatedRequests;
     });
   }, []);
-
-  const saveAuditLog = async (requests) => {
-    const refine = (req) => {
-      req.rule = req.rule.application;
-      req.documents = req.documents.map((d) => d.key);
-      req.questions = req.questions.map((d) => d.key);
-    };
-
-    // Create a deep copy of the requests array to avoid modifying the original
-    const logObj = requests.map((req) => {
-      const clonedReq = {
-        ...req,
-        documents: [...req.documents],
-        questions: [...req.questions],
+  const saveAuditLog = useCallback(
+    async (requests) => {
+      // Helper function to refine each request
+      const refine = (req) => {
+        req.rule = req.rule.application;
+        req.documents = req.documents.map((d) => d.key);
+        req.questions = req.questions.map((d) => d.key);
       };
-      refine(clonedReq);
-      return clonedReq;
-    });
 
-    console.log(logObj);
-
-    try {
-      const response = await fetch(`${serverEndpoint}/log`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          requests: logObj,
-        }),
+      // Refine each request in the array
+      const logObj = requests.map((req) => {
+        const clonedReq = {
+          ...req,
+          documents: [...req.documents],
+          questions: [...req.questions],
+        };
+        refine(clonedReq);
+        return clonedReq;
       });
+      // Assuming you have a function to save the refined requests (like an API call)
 
-      if (!response.ok) {
-        throw new Error("Failed to save audit log");
+      try {
+        const response = await fetch(`${serverEndpoint}/log`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            requests: logObj,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to save audit log");
+        }
+        console.log("Audit log saved successfully");
+      } catch (error) {
+        console.error("Error saving audit log:", error);
       }
-      console.log("Audit log saved successfully");
-    } catch (error) {
-      console.error("Error saving audit log:", error);
-    }
-  };
+    },
+    [serverEndpoint]
+  );
 
   const handleAnswerChange = useCallback(
     (index, questionKey, value) => {
@@ -199,7 +201,7 @@ const QuestionnaireForm = () => {
         return updatedRequests;
       });
     },
-    [answers, documents, requests]
+    [answers, documents, requests, saveAuditLog]
   );
 
   const uniqueApplications = useMemo(

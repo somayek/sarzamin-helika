@@ -1,7 +1,13 @@
 /* QuestionnaireForm.css */
+@font-face {
+  font-family: "Vazir-Regular";
+
+  src: local("Vazir"),
+    url("./assets/fonts/Vazir-Regular.ttf") format("truetype");
+}
 
 .App h1 {
-  font-family: "Arial", sans-serif; /* Modern, clean font */
+  font-family: "Vazir-Regular";
   font-size: 3rem; /* Larger font size for emphasis */
   color: #634528; /* Soft beige/taupe color for text */
   text-align: center; /* Center the heading */
@@ -21,7 +27,6 @@ body,
 }
 
 .questionnaire-form {
-  font-family: Arial, sans-serif;
   margin: 20px;
   max-width: 800px;
   margin-left: auto;
@@ -76,10 +81,6 @@ body,
 
 .input-row select option {
   text-align: right;
-}
-
-.answered-questions {
-  margin-bottom: 20px;
 }
 
 .answered-question {
@@ -217,7 +218,8 @@ button {
 /* Styling for the answered questions section */
 .answered-questions {
   margin-top: 20px;
-  padding: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

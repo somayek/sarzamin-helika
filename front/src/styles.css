@@ -1,0 +1,60 @@
+/* styles.css */
+@font-face {
+  font-family: "Vazir-Regular";
+
+  src: local("Vazir"),
+    url("./assets/fonts/Vazir-Regular.ttf") format("truetype");
+}
+body {
+  font-family: "Vazir-Regular";
+}
+
+.page {
+  flex-direction: column;
+  padding: 30px;
+  font-family: "Vazir-Regular";
+}
+
+.section {
+  margin-bottom: 15px;
+}
+
+.heading {
+  font-size: 18px;
+}
+
+.subheading {
+  font-size: 14px;
+}
+
+.list {
+  margin-top: 10px;
+}
+
+.listItem {
+  font-family: "Vazir-Regular";
+}
+
+.totalCharges {
+  font-weight: bold;
+}
+
+.downloadBtn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.downloadBtnDisabled {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ddd;
+  color: white;
+  border: none;
+  cursor: not-allowed;
+  border-radius: 5px;
+}
