@@ -13,6 +13,7 @@ const RequestBlock = ({
   currentAnswers,
   answers,
   uniqueApplications,
+  traceId,
 }) => {
   return (
     <div className="request-block">
@@ -104,7 +105,7 @@ const RequestBlock = ({
       {request.documents && request.documents.length > 0 && (
         <div>
           <PDFDownloadLink
-            document={<PDFDocument request={request} />}
+            document={<PDFDocument request={request} traceId={traceId} />}
             fileName="request_details.pdf"
           >
             {({ loading }) => (

@@ -5,8 +5,7 @@ const Log = require("../models/Log");
 
 router.post("/", async (req, res) => {
   try {
-    const { requests } = req.body;
-
+    const { requests, traceId } = req.body;
     if (!requests || !Array.isArray(requests)) {
       return res.status(400).json({ message: "Requests must be an array" });
     }
@@ -21,6 +20,7 @@ router.post("/", async (req, res) => {
 
     const log = new Log({
       requests: requestIds,
+      traceId,
     });
 
     await log.save();

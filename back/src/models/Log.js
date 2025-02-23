@@ -3,6 +3,7 @@ const Request = require("./Request"); // Import the Request model
 
 const LogSchema = new mongoose.Schema(
   {
+    traceId: String,
     requests: [
       {
         type: mongoose.Schema.Types.ObjectId, // This makes the requests an array of ObjectIds

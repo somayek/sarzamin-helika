@@ -8,7 +8,7 @@ Font.register({
   src: VazirRegular,
 });
 
-const PDFDocument = ({ request }) => (
+const PDFDocument = ({ request, traceId }) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
@@ -16,6 +16,7 @@ const PDFDocument = ({ request }) => (
         <Text style={styles.heading}>
           جزییات درخواست آقای / خانم: {request.name || "-"}
         </Text>
+        <Text>شناسه پیگیری:‌ {traceId}</Text>
         <View style={styles.line} />
         <Text style={styles.subheading}>مستندات لازم</Text>
         <View style={styles.rtlList}>

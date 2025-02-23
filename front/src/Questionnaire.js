@@ -20,6 +20,7 @@ const QuestionnaireForm = () => {
   const [answers, setAnswers] = useState([]);
   const [rules, setRules] = useState([]);
   const [documents, setDocuments] = useState([]);
+  const [traceId, setTraceId] = useState("");
   const serverEndpoint = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
@@ -44,6 +45,19 @@ const QuestionnaireForm = () => {
 
     fetchData();
   }, [serverEndpoint]);
+
+  useEffect(() => {
+    const generateTraceId = () => {
+      const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      const traceId = Array.from({ length: 6 }, () =>
+        characters.charAt(Math.floor(Math.random() * characters.length))
+      ).join("");
+
+      setTraceId(traceId);
+    };
+
+    generateTraceId();
+  }, []);
 
   const addRequest = useCallback(() => {
     setRequests((prevRequests) => [
@@ -85,6 +99,7 @@ const QuestionnaireForm = () => {
       return updatedRequests;
     });
   }, []);
+
   const saveAuditLog = useCallback(
     async (requests) => {
       // Helper function to refine each request
@@ -114,18 +129,18 @@ const QuestionnaireForm = () => {
           },
           body: JSON.stringify({
             requests: logObj,
+            traceId,
           }),
         });
 
         if (!response.ok) {
           throw new Error("Failed to save audit log");
         }
-        console.log("Audit log saved successfully");
       } catch (error) {
         console.error("Error saving audit log:", error);
       }
     },
-    [serverEndpoint]
+    [serverEndpoint, traceId]
   );
 
   const handleAnswerChange = useCallback(
@@ -193,13 +208,14 @@ const QuestionnaireForm = () => {
             .filter(Boolean);
 
           request.charges = [...new Set([...ruleCharges, ...answerCharges])];
-          saveAuditLog(requests);
         } catch (error) {
           console.error("Error submitting answers:", error);
         }
 
         return updatedRequests;
       });
+
+      saveAuditLog(requests);
     },
     [answers, documents, requests, saveAuditLog]
   );
@@ -214,48 +230,54 @@ const QuestionnaireForm = () => {
   }
 
   return (
-    <div className="questionnaire-form">
-      {requests.map((request, index) => {
-        if (request.application) {
-          request.rule =
-            rules.find((r) => r.application === request.application) || null;
-          if (!request.rule) return null;
+    <div>
+      <div>
+        <h4>شناسه پیگیری:‌{traceId}</h4>
+      </div>
+      <div className="questionnaire-form">
+        {requests.map((request, index) => {
+          if (request.application) {
+            request.rule =
+              rules.find((r) => r.application === request.application) || null;
+            if (!request.rule) return null;
 
-          request.questions = link(request.rule.questions);
-          if (
-            !request.currentQuestion &&
-            request.answeredQuestions.length === 0
-          ) {
-            request.currentQuestion = request.questions[0];
+            request.questions = link(request.rule.questions);
+            if (
+              !request.currentQuestion &&
+              request.answeredQuestions.length === 0
+            ) {
+              request.currentQuestion = request.questions[0];
+            }
           }
-        }
 
-        const currentAnswers = request.currentQuestion
-          ? answers.filter((a) =>
-              request.currentQuestion.options?.includes(a.key)
-            )
-          : [];
+          const currentAnswers = request.currentQuestion
+            ? answers.filter((a) =>
+                request.currentQuestion.options?.includes(a.key)
+              )
+            : [];
 
-        return (
-          <RequestBlock
-            key={index}
-            request={request}
-            index={index}
-            handleInputChange={handleInputChange}
-            handleAnswerChange={handleAnswerChange}
-            handleSubmit={handleSubmit}
-            currentAnswers={currentAnswers}
-            answers={answers}
-            uniqueApplications={uniqueApplications}
-          />
-        );
-      })}
-      {requests[requests.length - 1].application &&
-        requests[requests.length - 1].currentQuestion === null && (
-          <button onClick={addRequest} className="add-request-button">
-            افزودن درخواست جدید
-          </button>
-        )}
+          return (
+            <RequestBlock
+              key={index}
+              traceId={traceId}
+              request={request}
+              index={index}
+              handleInputChange={handleInputChange}
+              handleAnswerChange={handleAnswerChange}
+              handleSubmit={handleSubmit}
+              currentAnswers={currentAnswers}
+              answers={answers}
+              uniqueApplications={uniqueApplications}
+            />
+          );
+        })}
+        {requests[requests.length - 1].application &&
+          requests[requests.length - 1].currentQuestion === null && (
+            <button onClick={addRequest} className="add-request-button">
+              افزودن درخواست جدید
+            </button>
+          )}
+      </div>
     </div>
   );
 };
