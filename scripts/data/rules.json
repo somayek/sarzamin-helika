@@ -2,11 +2,11 @@
   {
     "application": "passport",
     "questions": [
+      "input_who",
       "input_sex",
       "input_age",
       "latest_passport_status",
       "latest_id_status",
-      "latest_military_service_status",
       "latest_residence_status",
       "change_residence_status"
     ],
@@ -15,8 +15,11 @@
     "charges": [285]
   },
   {
-    "application": "passport_male_above_50",
+    "application": "power_of_attorney",
     "questions": [
+      "input_who",
+      "input_sex",
+      "input_age",
       "latest_passport_status",
       "latest_id_status",
       "latest_residence_status",
@@ -24,43 +27,6 @@
     ],
     "answers": [],
     "documents": ["digital_photo_50_70"],
-    "charges": [285]
-  },
-  {
-    "application": "passport_female_single_above_18",
-    "questions": [
-      "latest_passport_status",
-      "latest_id_status",
-      "latest_residence_status",
-      "change_residence_status"
-    ],
-    "answers": [],
-    "documents": ["digital_photo_50_70"],
-    "charges": [285]
-  },
-  {
-    "application": "passport_female_married_above_18",
-    "questions": [
-      "latest_passport_status",
-      "latest_id_status",
-      "latest_residence_status",
-      "change_residence_status"
-    ],
-    "answers": [],
-    "documents": ["digital_photo_50_70"],
-    "charges": [285]
-  },
-  {
-    "application": "passport_15_18",
-    "questions": [
-      "latest_passport_status",
-      "latest_id_status",
-      "id_has_photo_yet",
-      "latest_residence_status",
-      "change_residence_status"
-    ],
-    "answers": [],
-    "documents": ["digital_photo_50_70"],
-    "charges": [285]
+    "charges": [100]
   }
 ]
