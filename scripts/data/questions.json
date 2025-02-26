@@ -46,7 +46,7 @@
       "orig_passport_handed_imm_office",
       "no_orig_passport_yet"
     ],
-    "next_question_key": "latest_id_status"
+    "next_question_key": ""
   },
   {
     "text": "وضعیت شناسنامه ایرانی خدمت گیرنده چیست؟.",
@@ -58,7 +58,7 @@
       "dont_have_orig_id",
       "not_received_id_yet"
     ],
-    "next_question_key": "latest_military_service_status",
+    "next_question_key": "",
     "first": false,
     "last": false
   },
