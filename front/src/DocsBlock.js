@@ -1,9 +1,17 @@
-import React from "react";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import React, { useState } from "react";
+import { pdf } from "@react-pdf/renderer";
+
 import "./styles.css";
 import PDFDocument from "./PDFDocument";
 
 const DocsBlock = ({ requests, traceId }) => {
+  const [pdfUrl, setPdfUrl] = useState(null);
+  const generatePDF = async () => {
+    const doc = <PDFDocument requests={requests} traceId={traceId} />;
+    const blob = await pdf(doc).toBlob();
+    setPdfUrl(URL.createObjectURL(blob));
+  };
+
   const allDocuments = requests.flatMap(
     (request, index) =>
       request.documents?.map((doc) => ({ ...doc, requestIndex: index + 1 })) ||
@@ -78,18 +86,14 @@ const DocsBlock = ({ requests, traceId }) => {
         </div>
       )}
 
-      <PDFDownloadLink
-        document={<PDFDocument requests={requests} traceId={traceId} />}
-        fileName={`Document_${traceId}.pdf`}
-      >
-        {({ loading }) =>
-          loading ? (
-            <button>در حال بارگذاری...</button>
-          ) : (
-            <button>دانلود</button>
-          )
-        }
-      </PDFDownloadLink>
+      <div>
+        <button onClick={generatePDF}>ایجاد PDF</button>
+        {pdfUrl && (
+          <a href={pdfUrl} download={`Document_${traceId}.pdf`}>
+            2دانلود
+          </a>
+        )}
+      </div>
     </div>
   );
 };
