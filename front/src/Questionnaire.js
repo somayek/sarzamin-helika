@@ -214,14 +214,16 @@ const QuestionnaireForm = () => {
 
         return updatedRequests;
       });
-      debugger;
       saveAuditLog(requests);
     },
     [answers, documents, requests, saveAuditLog]
   );
 
   const uniqueApplications = useMemo(
-    () => [{ value: "passport", text: "درخواست گذرنامه" },{ value: "power_of_attorney", text: "درخواست وکالت‌نامه" }],
+    () => [
+      { value: "passport", text: "درخواست گذرنامه" },
+      { value: "power_of_attorney", text: "درخواست وکالت‌نامه" },
+    ],
     []
   );
 

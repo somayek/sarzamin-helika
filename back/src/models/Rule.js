@@ -7,7 +7,7 @@ const RuleSchema = new mongoose.Schema(
     answers: [String],
     documents: [String],
     steps: [String],
-    charges: [Number],
+    charges: [{ amount: Number, description: String, currency: String }],
   },
   { timestamps: true }
 );

@@ -1,4 +1,4 @@
-[  
+[
   {
     "text": "خودم",
     "key": "who_me",
@@ -100,7 +100,9 @@
     "key": "id_photo_no",
     "next_question_key": "",
     "documents": ["id_photo_contact_us"],
-    "charges": [100],
+    "charges": [
+      { "amount": 100, "description": "هزینه پرونده", "currency": "CAD" }
+    ],
     "order": 1
   },
   {
@@ -156,17 +158,16 @@
     "key": "change_passport_with_spouse_no",
     "next_question_key": null,
     "documents": ["husband_agreement_documents"],
-    "charges": [80],
+    "charges": [
+      { "amount": 80, "description": "هزینه پرونده", "currency": "CAD" }
+    ],
     "order": 3
   },
   {
     "text": "اصل گذرنامه را همراه خود دارم",
     "key": "i_have_orig_passport",
     "next_question_key": null,
-    "documents": [
-      "passport_latest_first_page_scan",
-      "passport_and_id_video"
-    ],
+    "documents": ["passport_latest_first_page_scan", "passport_and_id_video"],
     "charges": [],
     "order": 1
   },
@@ -185,85 +186,63 @@
     "text": "گذرنامه مفقود و یا سرقت شده است",
     "key": "orig_passport_lost_or_stolen",
     "charges": [],
-    "documents": [
-      "passport_and_id_video",
-      "passport_lost_report"
-    ],
+    "documents": ["passport_and_id_video", "passport_lost_report"],
     "order": 3
   },
   {
     "text": "گذرنامه را دارم ولی مخدوش شده است",
     "key": "orig_passport_damaged",
     "charges": [],
-    "documents": [
-      "passport_and_id_video",
-      "passport_damage_report"
-    ],
+    "documents": ["passport_and_id_video", "passport_damage_report"],
     "order": 4
   },
   {
     "text": "گذرنامه را تحویل اداره مهاجرت داده‌ام ",
     "key": "orig_passport_handed_imm_office",
     "charges": [],
-    "documents": [
-      "passport_latest_first_page_scan",
-      "passport_and_id_video"
-    ],
+    "documents": ["passport_latest_first_page_scan", "passport_and_id_video"],
     "order": 5
   },
   {
     "text": "تا به حال گذرنامه نگرفته‌ام",
     "key": "no_orig_passport_yet",
     "charges": [],
-    "documents": [
-      "passport_and_id_video"
-    ],
+    "documents": ["passport_and_id_video"],
     "order": 6
   },
   {
     "text": "اصل شناسنامه را همراه خود دارم.",
     "key": "have_orig_id",
     "charges": [],
-    "documents": [
-      "id_all_pages_scan"
-    ],
+    "documents": ["id_all_pages_scan"],
     "order": 1
   },
   {
     "text": "اصل شناسنامه موجود ولی در دسترس نمی باشد.",
     "key": "orig_id_not_available",
     "charges": [],
-    "documents": [
-      "id_all_pages_scan",
-      "id_all_pages_video"
-    ],
+    "documents": ["id_all_pages_scan", "id_all_pages_video"],
     "order": 2
   },
   {
     "text": "اصل شناسنامه را ندارم. ",
     "key": "dont_have_orig_id",
     "charges": [],
-    "documents": [
-       "id_duplicate_submit_request"
-    ],
+    "documents": ["id_duplicate_submit_request"],
     "order": 3
   },
   {
     "text": "تا به حال شناسنامه نگرفته ام.",
     "key": "not_received_id_yet",
     "charges": [],
-    "documents": [
-      "id_should_to_be_issued"
-    ],
+    "documents": ["id_should_to_be_issued"],
     "order": 4
   },
   {
     "text": "کارت پایان خدمت یا معافیت دایم دارم",
     "key": "end_of_service_card",
     "charges": [],
-    "documents": [
-      "militaty_service_card_scan"
-    ],
+    "documents": ["militaty_service_card_scan"],
     "order": 1
   },
   {
@@ -331,7 +310,9 @@
     "text": "بلی",
     "documents": [],
     "key": "change_residancy_yes",
-    "charges": [30],
+    "charges": [
+      { "amount": 30, "description": "هزینه پرونده", "currency": "CAD" }
+    ],
     "order": 1
   },
   {
@@ -345,13 +326,17 @@
     "text": "شاید. نیاز به مشورت دارم",
     "documents": [],
     "key": "change_residancy_maybe",
-    "charges": [30],
+    "charges": [
+      { "amount": 30, "description": "هزینه پرونده", "currency": "CAD" }
+    ],
     "order": 3
   },
   {
     "text": "بلی",
     "key": "exit_yes",
-    "charges": [80],
+    "charges": [
+      { "amount": 80, "description": "هزینه پرونده", "currency": "CAD" }
+    ],
     "documents": ["passport_register_exit_stamp"],
     "order": 1
   },
@@ -411,5 +396,4 @@
     "documents": [""],
     "order": 7
   }
-
 ]

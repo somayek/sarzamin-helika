@@ -87,7 +87,9 @@ const RequestBlock = ({
               (charge, i) =>
                 charge && (
                   <li key={i} className="document-item">
-                    <span className="document-text">CAD {charge}</span>
+                    <span className="document-text">
+                      {charge.description}: {charge.amount} {charge.currency}
+                    </span>
                   </li>
                 )
             )}
@@ -96,7 +98,7 @@ const RequestBlock = ({
           <div className="total-charges">
             <strong>هزینه کل:</strong> CAD{" "}
             {request.charges
-              .reduce((acc, charge) => acc + parseFloat(charge), 0)
+              .reduce((acc, charge) => acc + parseFloat(charge.amount), 0)
               .toFixed(2)}
           </div>
         </div>

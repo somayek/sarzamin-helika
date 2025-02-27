@@ -41,8 +41,8 @@ const PDFDocument = ({ request, traceId }) => (
             </View>
             {request.charges.map((charge, idx) => (
               <View style={styles.tableRow} key={idx}>
-                <Text style={styles.tableCell}>{`هزینه ${idx + 1}`}</Text>
-                <Text style={styles.tableCell}>{charge}</Text>
+                <Text style={styles.tableCell}>{charge.description}</Text>
+                <Text style={styles.tableCell}>{charge.amount}</Text>
               </View>
             ))}
           </View>
@@ -53,7 +53,7 @@ const PDFDocument = ({ request, traceId }) => (
         <Text style={styles.totalCharges}>
           هزینه کل: CAD{" "}
           {request.charges
-            .reduce((acc, charge) => acc + parseFloat(charge), 0)
+            .reduce((acc, charge) => acc + parseFloat(charge.amount), 0)
             .toFixed(2)}
         </Text>
       </View>

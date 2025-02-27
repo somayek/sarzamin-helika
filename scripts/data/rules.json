@@ -10,20 +10,22 @@
       "latest_residence_status"
     ],
     "answers": [],
-    "documents": [
-      "digital_photo_50_70",
-      "last_exit_stamp"
-    ],
-    "charges": [285]
+    "documents": ["digital_photo_50_70", "last_exit_stamp"],
+    "charges": [
+      { "amount": 285, "description": "هزینه پرونده", "currency": "CAD" }
+    ]
   },
   {
     "application": "power_of_attorney",
-    "questions": [
-      "input_who",
-      "attorney_type"
-    ],
+    "questions": ["input_who", "attorney_type"],
     "answers": [],
-    "documents": ["digital_photo_50_70", "id_all_pages_scan", "lawyer_documents"],
-    "charges": [100]
+    "documents": [
+      "digital_photo_50_70",
+      "id_all_pages_scan",
+      "lawyer_documents"
+    ],
+    "charges": [
+      { "amount": 100, "description": "هزینه پرونده", "currency": "CAD" }
+    ]
   }
 ]
