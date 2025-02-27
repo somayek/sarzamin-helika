@@ -1,19 +1,15 @@
 import React from "react";
-import { PDFDownloadLink } from "@react-pdf/renderer";
 import QuestionSelector from "./QuestionSelector";
 import "./styles.css";
-import PDFDocument from "./PDFDocument";
 
 const RequestBlock = ({
   request,
   index,
   handleInputChange,
   handleAnswerChange,
-  handleSubmit,
   currentAnswers,
   answers,
   uniqueApplications,
-  traceId,
 }) => {
   return (
     <div className="request-block">
@@ -59,67 +55,6 @@ const RequestBlock = ({
           currentAnswers={currentAnswers}
           answers={answers}
         />
-      )}
-
-      {request.application && request.currentQuestion === null && (
-        <button onClick={() => handleSubmit(index)}>دریافت لیست مدارک</button>
-      )}
-      {request.documents && request.documents.length > 0 && (
-        <div className="documents">
-          <h3>مستندات لازم</h3>
-          <ul className="document-list">
-            {request.documents.map(
-              (doc, i) =>
-                doc.text && (
-                  <li key={i} className="document-item">
-                    <span className="document-text">{doc.text}</span>
-                  </li>
-                )
-            )}
-          </ul>
-        </div>
-      )}
-      {request.charges && request.charges.length > 0 && (
-        <div className="documents">
-          <h3>هزینه ها</h3>
-          <ul className="document-list">
-            {request.charges.map(
-              (charge, i) =>
-                charge && (
-                  <li key={i} className="document-item">
-                    <span className="document-text">
-                      {charge.description}: {charge.amount} {charge.currency}
-                    </span>
-                  </li>
-                )
-            )}
-          </ul>
-
-          <div className="total-charges">
-            <strong>هزینه کل:</strong> CAD{" "}
-            {request.charges
-              .reduce((acc, charge) => acc + parseFloat(charge.amount), 0)
-              .toFixed(2)}
-          </div>
-        </div>
-      )}
-
-      {request.documents && request.documents.length > 0 && (
-        <div>
-          <PDFDownloadLink
-            document={<PDFDocument request={request} traceId={traceId} />}
-            fileName={`request_details_${traceId}.pdf`}
-          >
-            {({ loading }) => (
-              <button
-                className={loading ? "downloadBtnDisabled" : "downloadBtn"}
-                disabled={loading}
-              >
-                {loading ? "در حال بارگذاری سند..." : "دانلود PDF"}
-              </button>
-            )}
-          </PDFDownloadLink>
-        </div>
       )}
     </div>
   );

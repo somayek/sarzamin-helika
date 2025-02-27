@@ -127,6 +127,7 @@ select {
   font-size: 16px;
   transition: background-color 0.3s ease;
   margin-top: 20px;
+  margin-left: 5px;
 }
 
 .submit-button:hover {
@@ -315,4 +316,41 @@ button {
 .document-item .document-text {
   color: #555;
   font-weight: normal;
+}
+
+.charges-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.charges-table th,
+.charges-table td {
+  padding: 10px;
+  text-align: right; /* Right align text for better RTL support */
+  border: 1px solid #ddd;
+}
+
+.charges-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.charges-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.charges-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.total-charges {
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+}
+
+.total-charges strong {
+  color: #333;
 }

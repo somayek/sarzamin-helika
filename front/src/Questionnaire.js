@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import "./QuestionnaireForm.css";
 import RequestBlock from "./RequestBlock";
+import DocsBlock from "./DocsBlock";
 
 const QuestionnaireForm = () => {
   const [requests, setRequests] = useState([
@@ -182,13 +183,12 @@ const QuestionnaireForm = () => {
     [allQuestions, answers]
   );
 
-  const handleSubmit = useCallback(
-    async (index) => {
-      setRequests((prevRequests) => {
-        const updatedRequests = [...prevRequests];
-        const request = updatedRequests[index];
+  const handleSubmit = useCallback(async () => {
+    setRequests((prevRequests) => {
+      const updatedRequests = [...prevRequests];
 
-        try {
+      try {
+        updatedRequests.forEach((request) => {
           const submittedAnswersArray = Object.values(request.selectedAnswers);
           const ruleDocuments = request.rule?.documents || [];
           const ruleCharges = request.rule?.charges || [];
@@ -209,15 +209,15 @@ const QuestionnaireForm = () => {
             .filter(Boolean);
 
           request.charges = [...new Set([...ruleCharges, ...answerCharges])];
-        } catch (error) {
-          console.error("Error submitting answers:", error);
-        }
-        return updatedRequests;
-      });
-      await saveAuditLog(requests);
-    },
-    [answers, documents, requests, saveAuditLog]
-  );
+        });
+      } catch (error) {
+        console.error("Error submitting answers:", error);
+      }
+
+      return updatedRequests;
+    });
+    saveAuditLog(requests);
+  }, [answers, documents, requests, saveAuditLog]);
 
   const uniqueApplications = useMemo(
     () => [
@@ -230,7 +230,9 @@ const QuestionnaireForm = () => {
   if (!allQuestions.length || !answers.length || !rules.length) {
     return <div>در حال بارگزاری ...</div>;
   }
-
+  const docExists = requests.some(
+    (request) => request.documents.length > 0 || request.charges.length > 0
+  );
   return (
     <div>
       <div className="traceid">
@@ -275,10 +277,19 @@ const QuestionnaireForm = () => {
         })}
         {requests[requests.length - 1].application &&
           requests[requests.length - 1].currentQuestion === null && (
-            <button onClick={addRequest} className="add-request-button">
-              افزودن درخواست جدید
-            </button>
+            <div>
+              <button onClick={addRequest} className="add-request-button">
+                افزودن درخواست جدید
+              </button>
+              <button
+                onClick={() => handleSubmit()}
+                style={{ margin: "0 5px" }}
+              >
+                پایان و نمایش نتیجه
+              </button>
+            </div>
           )}
+        {docExists && <DocsBlock requests={requests} traceId={traceId} />}
       </div>
     </div>
   );
