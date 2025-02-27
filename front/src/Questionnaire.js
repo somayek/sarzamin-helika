@@ -107,6 +107,7 @@ const QuestionnaireForm = () => {
         req.rule = req.rule.application;
         req.documents = req.documents.map((d) => d.key);
         req.questions = req.questions.map((d) => d.key);
+        req.charges = req.charges.map((d) => d.amount);
       };
 
       // Refine each request in the array
@@ -182,7 +183,7 @@ const QuestionnaireForm = () => {
   );
 
   const handleSubmit = useCallback(
-    (index) => {
+    async (index) => {
       setRequests((prevRequests) => {
         const updatedRequests = [...prevRequests];
         const request = updatedRequests[index];
@@ -211,10 +212,9 @@ const QuestionnaireForm = () => {
         } catch (error) {
           console.error("Error submitting answers:", error);
         }
-
         return updatedRequests;
       });
-      saveAuditLog(requests);
+      await saveAuditLog(requests);
     },
     [answers, documents, requests, saveAuditLog]
   );
