@@ -31,7 +31,7 @@
     "text": "آیا شناسنامه خود را عکس‌دار کرده‌اید؟",
     "key": "id_has_photo_yet",
     "input_type": "dropdown",
-    "options": ["id_photo_yes", "id_photo_no"], 
+    "options": ["id_photo_yes", "id_photo_no"],
     "next_question_key": ""
   },
   {
@@ -45,18 +45,25 @@
     "text": " محل اقامت ثبت شده در گذرنامه قبلی شما چیست؟",
     "key": "latest_residence_status_in_passport",
     "input_type": "dropdown",
-    "options": ["latest_residence_status_in_iran", "latest_residence_status_out_iran"],
+    "options": [
+      "latest_residence_status_in_iran",
+      "latest_residence_status_out_iran"
+    ],
     "next_question_key": ""
   },
   {
     "text": "کدام گزینه در مورد خدمت گیرنده صدق می‌کند؟",
     "key": "change_passport_with_spouse",
     "input_type": "dropdown",
-    "options": ["change_passport_with_spouse_yes", "change_passport_spouseـcanadian","change_passport_with_spouse_no"],
+    "options": [
+      "change_passport_with_spouse_yes",
+      "change_passport_spouseـcanadian",
+      "change_passport_with_spouse_no"
+    ],
     "next_question_key": ""
   },
   {
-    "text": "وضعیت آخرین گذرنامه ایرانی خدمت گیرنده چیست؟.",
+    "text": "وضعیت آخرین گذرنامه ایرانی خدمت گیرنده چیست؟",
     "key": "latest_passport_status",
     "input_type": "dropdown",
     "options": [
@@ -70,7 +77,7 @@
     "next_question_key": ""
   },
   {
-    "text": "وضعیت شناسنامه ایرانی خدمت گیرنده چیست؟.",
+    "text": "وضعیت شناسنامه ایرانی خدمت گیرنده چیست؟",
     "key": "latest_id_status",
     "input_type": "dropdown",
     "options": [
@@ -116,7 +123,11 @@
     "text": "آیا خدمت گیرنده تمایل به تغییر محل اقامت به کانادا درگذرنامه ایرانی دارد؟",
     "key": "change_residence_status",
     "input_type": "dropdown",
-    "options": ["change_residancy_yes", "change_residancy_no", "change_residancy_maybe"],
+    "options": [
+      "change_residancy_yes",
+      "change_residancy_no",
+      "change_residancy_maybe"
+    ],
     "next_question_key": null,
     "first": false,
     "last": true
@@ -143,7 +154,15 @@
     "text": "نوع وکالت مورد نیاز چیست؟",
     "key": "attorney_type",
     "input_type": "dropdown",
-    "options": ["attorney_banking", "attorney_buying_property", "attorney_selling_property", "attorney_selling_car", "attorney_administrative", "attorney_exit_spouse", "attorney_other"],
+    "options": [
+      "attorney_banking",
+      "attorney_buying_property",
+      "attorney_selling_property",
+      "attorney_selling_car",
+      "attorney_administrative",
+      "attorney_exit_spouse",
+      "attorney_other"
+    ],
     "next_question_key": null,
     "first": false,
     "last": false

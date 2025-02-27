@@ -14,9 +14,15 @@ const PDFDocument = ({ request, traceId }) => (
       <View style={styles.section}>
         <Text style={styles.h1}>خدمات کنسولی سرزمین - هلیکا</Text>
 
-        <Text style={styles.heading}>
-          {request.name || "-"} :جزییات درخواست آقای / خانم
-        </Text>
+        <View style={styles.tableRowNoBorder}>
+          <Text style={[styles.tableCellNoBorder, { width: "33%" }]}>
+            :جزییات درخواست آقای / خانم
+          </Text>
+          <Text style={[styles.tableCellNoBorder, { width: "67%" }]}>
+            {request.name || "-"}
+          </Text>
+        </View>
+
         <Text>{traceId} :شناسه پیگیری</Text>
         <View style={styles.line} />
         <Text style={styles.subheading}>مستندات لازم</Text>
