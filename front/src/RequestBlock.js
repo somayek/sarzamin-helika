@@ -108,7 +108,7 @@ const RequestBlock = ({
         <div>
           <PDFDownloadLink
             document={<PDFDocument request={request} traceId={traceId} />}
-            fileName="request_details.pdf"
+            fileName={`request_details_${traceId}.pdf`}
           >
             {({ loading }) => (
               <button
