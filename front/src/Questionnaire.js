@@ -221,7 +221,7 @@ const QuestionnaireForm = () => {
   );
 
   const uniqueApplications = useMemo(
-    () => [{ value: "passport", text: "درخواست گذرنامه" }],
+    () => [{ value: "passport", text: "درخواست گذرنامه" },{ value: "power_of_attorney", text: "درخواست وکالت‌نامه" }],
     []
   );
 

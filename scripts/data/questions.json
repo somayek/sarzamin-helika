@@ -1,27 +1,62 @@
 [
   {
-    "text": "جنسیت",
+    "text": "نسبت خدمت گیرنده با شما چیست؟",
+    "key": "input_who",
+    "input_type": "dropdown",
+    "options": ["who_me", "who_wife", "who_child", "who_other"],
+    "next_question_key": "input_sex"
+  },
+  {
+    "text": "جنسیت خدمت گیرنده در شناسنامه چیست؟",
     "key": "input_sex",
     "input_type": "dropdown",
     "options": ["sex_male", "sex_female"],
-    "next_question_key": "input_age"
+    "next_question_key": ""
   },
   {
-    "text": "سن",
-    "key": "input_age",
+    "text": "سن خدمت گیرنده؟",
+    "key": "input_age_female",
     "input_type": "dropdown",
-    "options": ["below_15", "15_18", "18_50", "above_50"],
+    "options": ["below_15", "15_18", "above_18_female"],
     "next_question_key": "input_marital_status"
   },
   {
-    "text": "وضعیت تاهل",
+    "text": "سن خدمت گیرنده؟",
+    "key": "input_age_male",
+    "input_type": "dropdown",
+    "options": ["below_15", "15_18", "18_50_male", "above_50_male"],
+    "next_question_key": ""
+  },
+  {
+    "text": "آیا شناسنامه خود را عکس‌دار کرده‌اید؟",
+    "key": "id_has_photo_yet",
+    "input_type": "dropdown",
+    "options": ["id_photo_yes", "id_photo_no"], 
+    "next_question_key": ""
+  },
+  {
+    "text": "وضعیت تاهل خدمت گیرنده چیست؟",
     "key": "input_marital_status",
     "input_type": "dropdown",
     "options": ["single", "married"],
     "next_question_key": ""
   },
   {
-    "text": "وضعیت آخرین گذرنامه ایرانی متقاضی را اعلام فرمائید.",
+    "text": " محل اقامت ثبت شده در گذرنامه قبلی شما چیست؟",
+    "key": "latest_residence_status_in_passport",
+    "input_type": "dropdown",
+    "options": ["latest_residence_status_in_iran", "latest_residence_status_out_iran"],
+    "next_question_key": ""
+  },
+  {
+    "text": "کدام گزینه در مورد خدمت گیرنده صدق می‌کند؟",
+    "key": "change_passport_with_spouse",
+    "input_type": "dropdown",
+    "options": ["change_passport_with_spouse_yes", "change_passport_spouseـcanadian","change_passport_with_spouse_no"],
+    "next_question_key": ""
+  },
+  {
+    "text": "وضعیت آخرین گذرنامه ایرانی خدمت گیرنده چیست؟.",
     "key": "latest_passport_status",
     "input_type": "dropdown",
     "options": [
@@ -32,10 +67,10 @@
       "orig_passport_handed_imm_office",
       "no_orig_passport_yet"
     ],
-    "next_question_key": "latest_id_status"
+    "next_question_key": ""
   },
   {
-    "text": "وضعیت شناسنامه متقاضی را اعلام فرمائید.",
+    "text": "وضعیت شناسنامه ایرانی خدمت گیرنده چیست؟.",
     "key": "latest_id_status",
     "input_type": "dropdown",
     "options": [
@@ -44,12 +79,12 @@
       "dont_have_orig_id",
       "not_received_id_yet"
     ],
-    "next_question_key": "latest_military_service_status",
+    "next_question_key": "",
     "first": false,
     "last": false
   },
   {
-    "text": "وضعیت نظام وظیفه متقاضی را اعلام فرمایید.",
+    "text": "وضعیت نظام وظیفه خدمت گیرنده چیست؟",
     "key": "latest_military_service_status",
     "input_type": "dropdown",
     "options": [
@@ -63,7 +98,7 @@
     "last": false
   },
   {
-    "text": "وضعیت اقامت متقاضی چیست؟",
+    "text": "وضعیت اقامت خدمت گیرنده در کانادا چیست؟",
     "key": "latest_residence_status",
     "input_type": "dropdown",
     "options": [
@@ -78,16 +113,16 @@
     "last": false
   },
   {
-    "text": "آیا تمایل به تغییر محل اقامت درگذرنامه ایرانی دارید؟",
+    "text": "آیا خدمت گیرنده تمایل به تغییر محل اقامت به کانادا درگذرنامه ایرانی دارد؟",
     "key": "change_residence_status",
     "input_type": "dropdown",
-    "options": ["change_residancy_yes", "change_residancy_no"],
+    "options": ["change_residancy_yes", "change_residancy_no", "change_residancy_maybe"],
     "next_question_key": null,
     "first": false,
     "last": true
   },
   {
-    "text": "از آخرین خروج من بیش از سه سال گذشته است؟",
+    "text": "از آخرین خروج خدمت گیرنده از ایران بیش از سه سال گذشته است؟",
     "key": "three_years_since_last_exit",
     "input_type": "dropdown",
     "options": ["exit_yes", "exit_no"],
@@ -96,10 +131,19 @@
     "last": false
   },
   {
-    "text": "آیا شناسنامه خود را عکسدار کرده اید؟",
+    "text": "آیا شناسنامه خدمت‌گیرنده عکس‌دار است؟",
     "key": "id_has_photo_yet",
     "input_type": "dropdown",
     "options": ["id_photo_yes", "id_photo_no"],
+    "next_question_key": null,
+    "first": false,
+    "last": false
+  },
+  {
+    "text": "نوع وکالت مورد نیاز چیست؟",
+    "key": "attorney_type",
+    "input_type": "dropdown",
+    "options": ["attorney_banking", "attorney_buying_property", "attorney_selling_property", "attorney_selling_car", "attorney_administrative", "attorney_exit_spouse", "attorney_other"],
     "next_question_key": null,
     "first": false,
     "last": false

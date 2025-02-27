@@ -1,16 +1,48 @@
-[
+[  
   {
-    "text": "مرد",
-    "key": "sex_male",
+    "text": "خودم",
+    "key": "who_me",
     "next_question_key": null,
     "documents": [],
     "charges": [],
     "order": 1
   },
   {
+    "text": "همسرم",
+    "key": "who_wife",
+    "next_question_key": null,
+    "documents": [],
+    "charges": [],
+    "order": 2
+  },
+  {
+    "text": "فرزندم",
+    "key": "who_child",
+    "next_question_key": null,
+    "documents": [],
+    "charges": [],
+    "order": 3
+  },
+  {
+    "text": "فرد دیگر",
+    "key": "who_other",
+    "next_question_key": null,
+    "documents": [],
+    "charges": [],
+    "order": 4
+  },
+  {
+    "text": "مرد",
+    "key": "sex_male",
+    "next_question_key": "input_age_male",
+    "documents": [],
+    "charges": [],
+    "order": 2
+  },
+  {
     "text": "زن",
     "key": "sex_female",
-    "next_question_key": "input_marital_status",
+    "next_question_key": "input_age_female",
     "documents": [],
     "charges": [],
     "order": 1
@@ -26,31 +58,55 @@
   {
     "text": "۱۵ تا ۱۸ سال",
     "key": "15_18",
-    "next_question_key": null,
+    "next_question_key": "id_has_photo_yet",
     "documents": [],
     "charges": [],
-    "order": 1
+    "order": 2
   },
   {
     "text": "۱۸ تا ۵۰ سال",
-    "key": "18_50",
+    "key": "18_50_male",
+    "next_question_key": "latest_military_service_status",
+    "documents": [],
+    "charges": [],
+    "order": 3
+  },
+  {
+    "text": "بالای ۵۰ سال",
+    "key": "above_50_male",
     "next_question_key": null,
+    "documents": [],
+    "charges": [],
+    "order": 4
+  },
+  {
+    "text": "بالای ۱۸ سال",
+    "key": "above_18_female",
+    "next_question_key": "input_marital_status",
+    "documents": [],
+    "charges": [],
+    "order": 3
+  },
+  {
+    "text": "بله",
+    "key": "id_photo_yes",
+    "next_question_key": "",
     "documents": [],
     "charges": [],
     "order": 1
   },
   {
-    "text": "بالای ۵۰ سال",
-    "key": "above_50",
-    "next_question_key": null,
-    "documents": [],
-    "charges": [],
+    "text": "خیر",
+    "key": "id_photo_no",
+    "next_question_key": "",
+    "documents": ["id_photo_contact_us"],
+    "charges": [100],
     "order": 1
   },
   {
     "text": "متاهل",
     "key": "married",
-    "next_question_key": null,
+    "next_question_key": "latest_residence_status_in_passport",
     "documents": [],
     "charges": [],
     "order": 1
@@ -64,57 +120,150 @@
     "order": 1
   },
   {
+    "text": "ایران",
+    "key": "latest_residence_status_in_iran",
+    "next_question_key": "change_passport_with_spouse",
+    "documents": [],
+    "charges": [],
+    "order": 1
+  },
+  {
+    "text": "خارج از ایران",
+    "key": "latest_residence_status_out_iran",
+    "next_question_key": null,
+    "documents": [],
+    "charges": [],
+    "order": 2
+  },
+  {
+    "text": "همزمان با همسرم برای تعویض گذرنامه اقدام می‌کنم",
+    "key": "change_passport_with_spouse_yes",
+    "next_question_key": null,
+    "documents": [],
+    "charges": [],
+    "order": 1
+  },
+  {
+    "text": "همسرم شهروند کانادا یا مقیم دایم است",
+    "key": "change_passport_spouseـcanadian",
+    "next_question_key": null,
+    "documents": [],
+    "charges": [],
+    "order": 2
+  },
+  {
+    "text": "هیچکدام",
+    "key": "change_passport_with_spouse_no",
+    "next_question_key": null,
+    "documents": ["husband_agreement_documents"],
+    "charges": [80],
+    "order": 3
+  },
+  {
     "text": "اصل گذرنامه را همراه خود دارم",
     "key": "i_have_orig_passport",
     "next_question_key": null,
     "documents": [
       "passport_latest_first_page_scan",
-      "passport_first_page_video"
+      "passport_and_id_video"
     ],
     "charges": [],
     "order": 1
   },
   {
-    "text": "اصل گذرنامه موجود ولی در دسترس نمی باشد",
+    "text": " گذرنامه دارم ولی اصل آن را همراه ندارم",
     "key": "no_orig_passport_available",
     "charges": [],
-    "documents": [],
+    "documents": [
+      "passport_latest_first_page_scan",
+      "passport_and_id_video",
+      "passport_first_page_video"
+    ],
     "order": 2
   },
   {
-    "text": "گذرنامه مفقود ای و سرقت شده است",
+    "text": "گذرنامه مفقود و یا سرقت شده است",
     "key": "orig_passport_lost_or_stolen",
     "charges": [],
-    "documents": [],
-
+    "documents": [
+      "passport_and_id_video",
+      "passport_lost_report"
+    ],
     "order": 3
   },
   {
-    "text": "گذرنامه موجود ولی .مخدوش شده است",
-    "charges": [],
-    "documents": [],
+    "text": "گذرنامه را دارم ولی مخدوش شده است",
     "key": "orig_passport_damaged",
+    "charges": [],
+    "documents": [
+      "passport_and_id_video",
+      "passport_damage_report"
+    ],
     "order": 4
   },
   {
-    "text": "گذرنامه را تحویل اداره مهاجرت داده ام ",
-    "charges": [],
-    "documents": [],
+    "text": "گذرنامه را تحویل اداره مهاجرت داده‌ام ",
     "key": "orig_passport_handed_imm_office",
+    "charges": [],
+    "documents": [
+      "passport_latest_first_page_scan",
+      "passport_and_id_video"
+    ],
     "order": 5
   },
   {
-    "text": "تا به حال گذرنامه نگرفته ام",
+    "text": "تا به حال گذرنامه نگرفته‌ام",
     "key": "no_orig_passport_yet",
     "charges": [],
-    "documents": [],
+    "documents": [
+      "passport_and_id_video"
+    ],
     "order": 6
   },
   {
-    "text": "کارت پایان خدمت یا معافیت دایم دارم",
+    "text": "اصل شناسنامه را همراه خود دارم.",
+    "key": "have_orig_id",
     "charges": [],
-    "documents": [],
+    "documents": [
+      "id_all_pages_scan"
+    ],
+    "order": 1
+  },
+  {
+    "text": "اصل شناسنامه موجود ولی در دسترس نمی باشد.",
+    "key": "orig_id_not_available",
+    "charges": [],
+    "documents": [
+      "id_all_pages_scan",
+      "id_all_pages_video"
+    ],
+    "order": 2
+  },
+  {
+    "text": "اصل شناسنامه را ندارم. ",
+    "key": "dont_have_orig_id",
+    "charges": [],
+    "documents": [
+       "id_duplicate_submit_request"
+    ],
+    "order": 3
+  },
+  {
+    "text": "تا به حال شناسنامه نگرفته ام.",
+    "key": "not_received_id_yet",
+    "charges": [],
+    "documents": [
+      "id_should_to_be_issued"
+    ],
+    "order": 4
+  },
+  {
+    "text": "کارت پایان خدمت یا معافیت دایم دارم",
     "key": "end_of_service_card",
+    "charges": [],
+    "documents": [
+      "militaty_service_card_scan"
+    ],
     "order": 1
   },
   {
@@ -141,50 +290,25 @@
     "order": 4
   },
   {
-    "text": "اصل شناسنامه را همراه خود دارم.",
-    "documents": ["id_all_pages_scan", "id_all_pages_video"],
-    "charges": [],
-    "key": "have_orig_id",
-    "order": 1
-  },
-  {
-    "text": "اصل شناسنامه موجود ولی در دسترس نمی باشد.",
-    "documents": [],
-    "charges": [],
-    "key": "orig_id_not_available",
-    "order": 2
-  },
-  {
-    "text": "اصل شناسنامه را ندارم. ",
-    "charges": [],
-    "documents": [],
-    "key": "dont_have_orig_id",
-    "order": 3
-  },
-  {
-    "text": "تا به حال شناسنامه نگرفته ام.",
-    "charges": [],
-    "documents": [],
-    "key": "not_received_id_yet",
-    "order": 4
-  },
-  {
-    "text": "شهروند کانادا",
+    "text": "شهروند کانادا (سیتیزن)",
     "documents": ["passport_canadian_scan"],
+    "next_question_key": "change_residence_status",
     "charges": [],
     "key": "residancy_citizen",
     "order": 1
   },
   {
-    "text": "مقیم دایم",
+    "text": "مقیم دایم (پی آر)",
     "documents": ["pr_valid_scan"],
     "charges": [],
+    "next_question_key": "change_residence_status",
     "key": "residancy_pr",
     "order": 2
   },
   {
     "text": "اجازه کار یا تحصیل",
     "documents": ["work_study_visa_valid_scan"],
+    "next_question_key": "change_residence_status",
     "key": "residancy_study_work_visa",
     "charges": [],
     "order": 3
@@ -218,6 +342,13 @@
     "order": 2
   },
   {
+    "text": "شاید. نیاز به مشورت دارم",
+    "documents": [],
+    "key": "change_residancy_maybe",
+    "charges": [30],
+    "order": 3
+  },
+  {
     "text": "بلی",
     "key": "exit_yes",
     "charges": [80],
@@ -232,17 +363,53 @@
     "order": 2
   },
   {
-    "text": "بلی",
-    "key": "id_photo_yes",
+    "text": "وکالت امور بانکی",
+    "key": "attorney_banking",
     "charges": [],
-    "documents": [],
+    "documents": ["bank_account_details"],
     "order": 1
   },
   {
-    "text": "خیر",
-    "key": "id_photo_no",
+    "text": "وکالت خرید ملک",
+    "key": "attorney_buying_property",
     "charges": [],
-    "documents": [],
+    "documents": ["property_details"],
     "order": 2
+  },
+  {
+    "text": "وکالت فروش ملک",
+    "key": "attorney_selling_property",
+    "charges": [],
+    "documents": ["property_details"],
+    "order": 3
+  },
+  {
+    "text": "وکالت فروش خودرو",
+    "key": "attorney_selling_car",
+    "charges": [],
+    "documents": ["car_card_scan"],
+    "order": 4
+  },
+  {
+    "text": "وکالت اداری",
+    "key": "attorney_administrative",
+    "charges": [],
+    "documents": [""],
+    "order": 5
+  },
+  {
+    "text": "وکالت خروج همسر",
+    "key": "attorney_exit_spouse",
+    "charges": [],
+    "documents": [""],
+    "order": 6
+  },
+  {
+    "text": "سایر",
+    "key": "attorney_other",
+    "charges": [],
+    "documents": [""],
+    "order": 7
   }
+
 ]

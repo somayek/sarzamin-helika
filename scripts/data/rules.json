@@ -2,65 +2,28 @@
   {
     "application": "passport",
     "questions": [
+      "input_who",
       "input_sex",
       "input_age",
       "latest_passport_status",
       "latest_id_status",
-      "latest_military_service_status",
-      "latest_residence_status",
-      "change_residence_status"
+      "latest_residence_status"
     ],
     "answers": [],
-    "documents": ["digital_photo_50_70"],
+    "documents": [
+      "digital_photo_50_70",
+      "last_exit_stamp"
+    ],
     "charges": [285]
   },
   {
-    "application": "passport_male_above_50",
+    "application": "power_of_attorney",
     "questions": [
-      "latest_passport_status",
-      "latest_id_status",
-      "latest_residence_status",
-      "change_residence_status"
+      "input_who",
+      "attorney_type"
     ],
     "answers": [],
-    "documents": ["digital_photo_50_70"],
-    "charges": [285]
-  },
-  {
-    "application": "passport_female_single_above_18",
-    "questions": [
-      "latest_passport_status",
-      "latest_id_status",
-      "latest_residence_status",
-      "change_residence_status"
-    ],
-    "answers": [],
-    "documents": ["digital_photo_50_70"],
-    "charges": [285]
-  },
-  {
-    "application": "passport_female_married_above_18",
-    "questions": [
-      "latest_passport_status",
-      "latest_id_status",
-      "latest_residence_status",
-      "change_residence_status"
-    ],
-    "answers": [],
-    "documents": ["digital_photo_50_70"],
-    "charges": [285]
-  },
-  {
-    "application": "passport_15_18",
-    "questions": [
-      "latest_passport_status",
-      "latest_id_status",
-      "id_has_photo_yet",
-      "latest_residence_status",
-      "change_residence_status"
-    ],
-    "answers": [],
-    "documents": ["digital_photo_50_70"],
-    "charges": [285]
+    "documents": ["digital_photo_50_70", "id_all_pages_scan", "lawyer_documents"],
+    "charges": [100]
   }
 ]
