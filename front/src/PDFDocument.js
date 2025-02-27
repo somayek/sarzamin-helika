@@ -13,19 +13,30 @@ const PDFDocument = ({ request, traceId }) => (
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
         <Text style={styles.h1}>خدمات کنسولی سرزمین - هلیکا</Text>
+
         <Text style={styles.heading}>
           {request.name || "-"} :جزییات درخواست آقای / خانم
         </Text>
-        <Text>شناسه پیگیری:‌ {traceId}</Text>
+        <Text>{traceId} :شناسه پیگیری</Text>
         <View style={styles.line} />
         <Text style={styles.subheading}>مستندات لازم</Text>
-        <View style={styles.rtlList}>
+        <View style={styles.table}>
+          <View style={styles.tableRow}>
+            <Text style={[styles.tableCellHeader, { width: "8%" }]}>#</Text>
+            <Text style={[styles.tableCellHeader, { width: "92%" }]}>سند</Text>
+          </View>
+
           {request.documents.map(
             (docItem, idx) =>
               docItem.text && (
-                <Text key={idx} style={styles.rtlListItem}>
-                  {`${idx + 1} - ${docItem.text}`}
-                </Text>
+                <View key={idx} style={styles.tableRow}>
+                  <Text style={[styles.tableCell, { width: "8%" }]}>
+                    {idx + 1}
+                  </Text>
+                  <Text style={[styles.tableCell, { width: "92%" }]}>
+                    {docItem.text}
+                  </Text>
+                </View>
               )
           )}
         </View>
@@ -37,7 +48,7 @@ const PDFDocument = ({ request, traceId }) => (
           <View style={styles.table}>
             <View style={[styles.tableRow, styles.tableHeader]}>
               <Text style={styles.tableCellHeader}>شرح</Text>
-              <Text style={styles.tableCellHeader}>مبلغ (CAD)</Text>
+              <Text style={styles.tableCellHeader}>(CAD)مبلغ</Text>
             </View>
             {request.charges.map((charge, idx) => (
               <View style={styles.tableRow} key={idx}>
@@ -48,13 +59,15 @@ const PDFDocument = ({ request, traceId }) => (
           </View>
         </View>
       )}
-
-      <View style={styles.section}>
-        <Text style={styles.totalCharges}>
-          هزینه کل: CAD{" "}
+      <View style={styles.tableRowNoBorder}>
+        <Text style={[styles.tableCellNoBorder, { width: "15%" }]}>
+          : هزینه کل
+        </Text>
+        <Text style={[styles.tableCellNoBorder, { width: "85%" }]}>
           {request.charges
             .reduce((acc, charge) => acc + parseFloat(charge.amount), 0)
-            .toFixed(2)}
+            .toFixed(2)}{" "}
+          CAD
         </Text>
       </View>
     </Page>

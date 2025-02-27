@@ -56,24 +56,8 @@ const styles = StyleSheet.create({
     borderBottomColor: "#000",
     textAlign: "right",
   },
-  tableCell: {
-    fontSize: 12,
-    fontFamily: "Vazir-Regular",
-    padding: 5,
-    borderRightWidth: 1,
-    borderRightColor: "#000",
-    flexGrow: 1,
-    textAlign: "right",
-  },
-  tableCellHeader: {
-    fontSize: 12,
-    fontWeight: "bold",
-    fontFamily: "Vazir-Regular",
-    padding: 5,
-    backgroundColor: "#f2f2f2",
-    borderRightWidth: 1,
-    borderRightColor: "#000",
-    flexGrow: 1,
+  tableRowNoBorder: {
+    flexDirection: "row-reverse", // RTL-friendly
     textAlign: "right",
   },
   rtlList: {
@@ -100,6 +84,33 @@ const styles = StyleSheet.create({
     fontFamily: "Vazir-Regular",
     marginTop: 10,
     textAlign: "right",
+  },
+  tableCellNoBorder: {
+    fontSize: 12,
+    fontFamily: "Vazir-Regular",
+    padding: 5,
+    borderRightWidth: 0,
+    textAlign: "right",
+  },
+  tableCell: {
+    fontSize: 12,
+    fontFamily: "Vazir-Regular",
+    padding: 5,
+    borderRightWidth: 1,
+    borderRightColor: "#000",
+    textAlign: "right",
+    width: "50%",
+  },
+  tableCellHeader: {
+    fontSize: 12,
+    fontWeight: "bold",
+    fontFamily: "Vazir-Regular",
+    padding: 5,
+    backgroundColor: "#f2f2f2",
+    borderRightWidth: 1,
+    borderRightColor: "#000",
+    textAlign: "right",
+    width: "50%",
   },
 });
 
