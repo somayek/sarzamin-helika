@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { pdf } from "@react-pdf/renderer";
 
 import "./styles.css";
@@ -6,11 +6,18 @@ import PDFDocument from "./PDFDocument";
 
 const DocsBlock = ({ requests, traceId }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
-  const generatePDF = async () => {
-    const doc = <PDFDocument requests={requests} traceId={traceId} />;
-    const blob = await pdf(doc).toBlob();
-    setPdfUrl(URL.createObjectURL(blob));
-  };
+  const [isGenerating, setIsGenerating] = useState(true); // Initially, we're generating the PDF
+
+  useEffect(() => {
+    const generatePDF = async () => {
+      const doc = <PDFDocument requests={requests} traceId={traceId} />;
+      const blob = await pdf(doc).toBlob();
+      setPdfUrl(URL.createObjectURL(blob));
+      setIsGenerating(false); // Finished generating PDF
+    };
+
+    generatePDF(); // Generate PDF as soon as the component mounts
+  }, [requests, traceId]); // Dependencies for when to regenerate the PDF
 
   const allDocuments = requests.flatMap(
     (request, index) =>
@@ -24,6 +31,13 @@ const DocsBlock = ({ requests, traceId }) => {
         requestIndex: index + 1,
       })) || []
   );
+
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = pdfUrl;
+    link.download = `Document_${traceId}.pdf`;
+    link.click();
+  };
 
   return (
     <div>
@@ -87,11 +101,10 @@ const DocsBlock = ({ requests, traceId }) => {
       )}
 
       <div>
-        <button onClick={generatePDF}>ایجاد PDF</button>
-        {pdfUrl && (
-          <a href={pdfUrl} download={`Document_${traceId}.pdf`}>
-            2دانلود
-          </a>
+        {isGenerating ? (
+          <button disabled>در حال ایجاد PDF...</button>
+        ) : (
+          <button onClick={handleDownload}>دانلود PDF</button>
         )}
       </div>
     </div>
