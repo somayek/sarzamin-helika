@@ -28,10 +28,31 @@
     "next_question_key": ""
   },
   {
-    "text": "وضعیت تاهل؟",
+    "text": "آیا شناسنامه خود را عکس‌دار کرده‌اید؟",
+    "key": "id_has_photo_yet",
+    "input_type": "dropdown",
+    "options": ["id_photo_yes", "id_photo_no"], 
+    "next_question_key": ""
+  },
+  {
+    "text": "وضعیت تاهل خدمت گیرنده چیست؟",
     "key": "input_marital_status",
     "input_type": "dropdown",
     "options": ["single", "married"],
+    "next_question_key": ""
+  },
+  {
+    "text": " محل اقامت ثبت شده در گذرنامه قبلی شما چیست؟",
+    "key": "latest_residence_status_in_passport",
+    "input_type": "dropdown",
+    "options": ["latest_residence_status_in_iran", "latest_residence_status_out_iran"],
+    "next_question_key": ""
+  },
+  {
+    "text": "کدام گزینه در مورد خدمت گیرنده صدق می‌کند؟",
+    "key": "change_passport_with_spouse",
+    "input_type": "dropdown",
+    "options": ["change_passport_with_spouse_yes", "change_passport_spouseـcanadian","change_passport_with_spouse_no"],
     "next_question_key": ""
   },
   {
