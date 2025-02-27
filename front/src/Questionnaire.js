@@ -103,7 +103,6 @@ const QuestionnaireForm = () => {
 
   const saveAuditLog = useCallback(
     async (requests) => {
-      // Helper function to refine each request
       const refine = (req) => {
         req.rule = req.rule.application;
         req.documents = req.documents.map((d) => d.key);
@@ -111,18 +110,18 @@ const QuestionnaireForm = () => {
         req.charges = req.charges.map((d) => d.amount);
       };
 
-      // Refine each request in the array
       const logObj = requests.map((req) => {
         const clonedReq = {
           ...req,
           documents: [...req.documents],
           questions: [...req.questions],
+          charges: [...req.charges],
         };
+
         refine(clonedReq);
         return clonedReq;
       });
-      // Assuming you have a function to save the refined requests (like an API call)
-
+      console.log(requests, logObj);
       try {
         const response = await fetch(`${serverEndpoint}/log`, {
           method: "POST",
@@ -184,6 +183,11 @@ const QuestionnaireForm = () => {
   );
 
   const handleSubmit = useCallback(async () => {
+    await submitRequests();
+    saveAuditLog(requests);
+  }, [requests, saveAuditLog]);
+
+  const submitRequests = async () => {
     setRequests((prevRequests) => {
       const updatedRequests = [...prevRequests];
 
@@ -216,8 +220,7 @@ const QuestionnaireForm = () => {
 
       return updatedRequests;
     });
-    saveAuditLog(requests);
-  }, [answers, documents, requests, saveAuditLog]);
+  };
 
   const uniqueApplications = useMemo(
     () => [
