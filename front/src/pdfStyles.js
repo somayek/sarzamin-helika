@@ -9,11 +9,12 @@ Font.register({
 
 const styles = StyleSheet.create({
   page: {
-    flexDirection: "column",
+    // flexDirection: "column",
     padding: 30,
     fontFamily: "Vazir-Regular",
     direction: "rtl",
     textAlign: "right",
+    border: "1px solid #0a0a0a",
   },
   section: {
     marginBottom: 15,

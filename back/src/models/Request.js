@@ -6,7 +6,7 @@ const RequestSchema = new mongoose.Schema(
     application: String,
     selectedAnswers: {},
     documents: [String],
-    charges: [String],
+    charges: [{ amount: Number, description: String, currency: String }],
     rule: String,
   },
   { timestamps: true }

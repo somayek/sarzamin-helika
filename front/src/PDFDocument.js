@@ -14,7 +14,7 @@ const PDFDocument = ({ request, traceId }) => (
       <View style={styles.section}>
         <Text style={styles.h1}>خدمات کنسولی سرزمین - هلیکا</Text>
         <Text style={styles.heading}>
-          جزییات درخواست آقای / خانم: {request.name || "-"}
+          {request.name || "-"} :جزییات درخواست آقای / خانم
         </Text>
         <Text>شناسه پیگیری:‌ {traceId}</Text>
         <View style={styles.line} />

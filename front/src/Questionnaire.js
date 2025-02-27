@@ -226,12 +226,12 @@ const QuestionnaireForm = () => {
   );
 
   if (!allQuestions.length || !answers.length || !rules.length) {
-    return <div>Loading...</div>;
+    return <div>در حال بارگزاری ...</div>;
   }
 
   return (
     <div>
-      <div>
+      <div className="traceid">
         <h4>شناسه پیگیری:‌{traceId}</h4>
       </div>
       <div className="questionnaire-form">

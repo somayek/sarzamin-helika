@@ -7,7 +7,7 @@ const AnswerSchema = new mongoose.Schema(
     order: Number,
     next_question_key: String,
     documents: [String],
-    charges: [Number],
+    charges: [{ amount: Number, description: String, currency: String }],
   },
   { timestamps: true }
 );
