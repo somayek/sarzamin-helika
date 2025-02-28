@@ -108,7 +108,7 @@ const LogTab = ({ data, pagination, onPageChange }) => {
         {data.map((log, index) => (
           <div key={index}>
             <LogComponent log={log} />
-            {index < data.length - 1 && <hr className="my-2 border-gray-300" />}
+            {index < data.length - 1 && <hr className="full-line" />}
           </div>
         ))}
       </ul>
@@ -140,7 +140,7 @@ const RuleTab = ({ data }) => {
         {data.map((rule, index) => (
           <div key={index}>
             <RuleComponent rule={rule} />
-            {index < data.length - 1 && <hr className="my-2 border-gray-300" />}
+            {index < data.length - 1 && <hr className="full-line" />}
           </div>
         ))}
       </ul>
@@ -155,7 +155,7 @@ const QuestionTab = ({ data }) => {
         {data.map((question, index) => (
           <div key={index}>
             <QuestionComponent question={question} />
-            {index < data.length - 1 && <hr className="my-2 border-gray-300" />}
+            {index < data.length - 1 && <hr className="full-line" />}
           </div>
         ))}
       </ul>
@@ -170,7 +170,7 @@ const AnswerTab = ({ data }) => {
         {data.map((answer, index) => (
           <div key={index}>
             <AnswerComponent answer={answer} />
-            {index < data.length - 1 && <hr className="my-2 border-gray-300" />}
+            {index < data.length - 1 && <hr className="full-line" />}
           </div>
         ))}
       </ul>
@@ -185,7 +185,7 @@ const DocumentTab = ({ data }) => {
         {data.map((document, index) => (
           <div key={index}>
             <DocumentComponent document={document} />
-            {index < data.length - 1 && <hr className="my-2 border-gray-300" />}
+            {index < data.length - 1 && <hr className="full-line" />}
           </div>
         ))}
       </ul>
