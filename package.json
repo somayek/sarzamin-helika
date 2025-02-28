@@ -12,7 +12,8 @@
     "install:all": "npm install && cd back && npm install && cd ../front && npm install",
     "build": "cd front && npm run build",
     "heroku-postbuild": "cd front && npm install && npm run build",
-    "insert:all": "node scripts/insertData.js"
+    "insert:all": "node scripts/insertData.js",
+    "drop:logs": "node scripts/dropLogs.js"
   },
   "keywords": [],
   "author": "",

@@ -12,7 +12,6 @@ const questionsData = require("./data/questions.json");
 const documentsData = require("./data/documents.json");
 const rulesData = require("./data/rules.json");
 const connectDB = require("../back/src/db");
-// const mongoUri = process.env.MONGO_URI || "mongodb://localhost:27017/helika";
 connectDB();
 
 async function insertInitialData() {
