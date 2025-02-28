@@ -21,12 +21,14 @@ const RequestBlock = ({
           placeholder="نام"
           value={request.name}
           onChange={(e) => handleInputChange(index, "name", e.target.value)}
+          disabled={!!request.application}
         />
         <select
           value={request.application}
           onChange={(e) =>
             handleInputChange(index, "application", e.target.value)
           }
+          disabled={!!request.application}
         >
           <option value="">نوع درخواست</option>
           {uniqueApplications.map((app, i) => (
@@ -41,7 +43,7 @@ const RequestBlock = ({
         <div className="answered-questions">
           <ul>
             {request.answeredQuestions.map((item, idx) => (
-              <li key={idx}>{`${item.question}: ${item.answer}`}</li>
+              <li key={idx}><b>{`${item.question}`}</b><u> {`${item.answer}`}</u></li>
             ))}
           </ul>
         </div>

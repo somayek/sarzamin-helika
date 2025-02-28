@@ -1,6 +1,6 @@
 [
   {
-    "application": "passport",
+    "application": "پاسپورت",
     "questions": [
       "input_who",
       "input_sex",
@@ -16,7 +16,7 @@
     ]
   },
   {
-    "application": "power_of_attorney",
+    "application": "وکالت",
     "questions": ["input_who", "attorney_type"],
     "answers": [],
     "documents": [
@@ -25,7 +25,7 @@
       "lawyer_documents"
     ],
     "charges": [
-      { "amount": 100, "description": "هزینه پرونده", "currency": "CAD" }
+      { "amount": 100, "description": "هزینه صدور وکالت‌نامه", "currency": "CAD" }
     ]
   }
 ]

@@ -40,7 +40,7 @@ const PDFDocument = ({ requests, traceId }) => {
                       <Text
                         style={[styles.tableCellNoBorder, { width: "33%" }]}
                       >
-                        : درخواست {index + 1} آقای / خانم
+                        : درخواست شماره {index + 1}  -  {request.application}  برای 
                       </Text>
                       <Text
                         style={[styles.tableCellNoBorder, { width: "67%" }]}

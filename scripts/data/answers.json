@@ -101,7 +101,7 @@
     "next_question_key": "",
     "documents": ["id_photo_contact_us"],
     "charges": [
-      { "amount": 100, "description": "هزینه پرونده", "currency": "CAD" }
+      { "amount": 100, "description": "هزینه عکس‌دار کردن شناسنامه", "currency": "CAD" }
     ],
     "order": 1
   },
@@ -159,7 +159,7 @@
     "next_question_key": null,
     "documents": ["husband_agreement_documents"],
     "charges": [
-      { "amount": 80, "description": "هزینه پرونده", "currency": "CAD" }
+      { "amount": 80, "description": "هزینه ثبت تایید همسر", "currency": "CAD" }
     ],
     "order": 3
   },
@@ -311,7 +311,7 @@
     "documents": [],
     "key": "change_residancy_yes",
     "charges": [
-      { "amount": 30, "description": "هزینه پرونده", "currency": "CAD" }
+      { "amount": 30, "description": "هزینه تغییر محل اقامت", "currency": "CAD" }
     ],
     "order": 1
   },
@@ -327,7 +327,7 @@
     "documents": [],
     "key": "change_residancy_maybe",
     "charges": [
-      { "amount": 30, "description": "هزینه پرونده", "currency": "CAD" }
+      { "amount": 30, "description": "هزینه تغییر محل اقامت", "currency": "CAD" }
     ],
     "order": 3
   },
@@ -335,7 +335,7 @@
     "text": "بلی",
     "key": "exit_yes",
     "charges": [
-      { "amount": 80, "description": "هزینه پرونده", "currency": "CAD" }
+      { "amount": 80, "description": "هزینه ثبت مهر خروج", "currency": "CAD" }
     ],
     "documents": ["passport_register_exit_stamp"],
     "order": 1
