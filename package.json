@@ -24,6 +24,7 @@
     "concurrently": "^9.1.2",
     "jspdf": "^3.0.0",
     "mongoose": "^8.10.1",
-    "pdfmake": "^0.2.18"
+    "pdfmake": "^0.2.18",
+    "react-router-dom": "^7.2.0"
   }
 }

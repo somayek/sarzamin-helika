@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { pdf } from "@react-pdf/renderer";
+import { useNavigate } from "react-router-dom";
 
 import "./styles.css";
 import PDFDocument from "./PDFDocument";
@@ -7,6 +8,7 @@ import PDFDocument from "./PDFDocument";
 const DocsBlock = ({ requests, traceId }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
   const [isGenerating, setIsGenerating] = useState(true); // Initially, we're generating the PDF
+  const navigate = useNavigate();
 
   useEffect(() => {
     const generatePDF = async () => {
@@ -39,6 +41,10 @@ const DocsBlock = ({ requests, traceId }) => {
     link.click();
   };
 
+  const handleProceed = () => {
+    navigate("/contact-info");
+  };
+
   return (
     <div>
       {allDocuments.length > 0 && (
@@ -51,7 +57,6 @@ const DocsBlock = ({ requests, traceId }) => {
                 <div key={index}>
                   <h4>
                     درخواست شماره {index + 1} - {request.application} برای {request.name}
-                    
                   </h4>
                   <ul className="document-list">
                     {request.documents.map((doc, i) =>
@@ -107,6 +112,10 @@ const DocsBlock = ({ requests, traceId }) => {
         ) : (
           <button onClick={handleDownload}>دانلود PDF</button>
         )}
+        &nbsp;
+        <button onClick={handleDownload}>ادامه (پرداخت و ارسال مدارک و ضبط ویدیو)</button>
+        &nbsp;
+        <button onClick={handleProceed}>ورود اطلاعات تماس و پرداخت</button>
       </div>
     </div>
   );
