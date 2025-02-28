@@ -15,6 +15,7 @@ const RequestBlock = ({
     <div className="request-block">
       <h3>درخواست {request.application} {request.name}</h3>
 
+      {!request.application && (
       <div className="input-row">
         <input
           type="text"
@@ -38,6 +39,8 @@ const RequestBlock = ({
           ))}
         </select>
       </div>
+      )}
+
 
       {request.answeredQuestions.length > 0 && (
         <div className="answered-questions">
