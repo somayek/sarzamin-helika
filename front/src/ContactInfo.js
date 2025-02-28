@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./styles.css";
 
 const ContactInfo = () => {
   const [email, setEmail] = useState("");
@@ -13,23 +14,21 @@ const ContactInfo = () => {
   };
 
   return (
-    <div>
+    <div className="input-row">
       <h2>ورود اطلاعات تماس</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>ایمیل:</label>
           <input
-            type="email"
+            type="text"
+            placeholder="ایمیل"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </div>
-        <div>
-          <label>شماره تلفن:</label>
           <input
-            type="tel"
+            type="text"
             value={phone}
+            placeholder="موبایل"
             onChange={(e) => setPhone(e.target.value)}
             required
           />
