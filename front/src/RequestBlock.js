@@ -13,7 +13,7 @@ const RequestBlock = ({
 }) => {
   return (
     <div className="request-block">
-      <h3>درخواست {index + 1}</h3>
+      <h3>درخواست {request.application} {request.name}</h3>
 
       <div className="input-row">
         <input
