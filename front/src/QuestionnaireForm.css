@@ -20,8 +20,7 @@
   margin-top: 20px; /* Space above the heading */
 }
 
-body,
-.questionnaire-form {
+body {
   direction: rtl;
   text-align: right;
   margin: 20px;

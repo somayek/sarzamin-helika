@@ -7,7 +7,10 @@ const LogComponent = ({ log }) => {
       <h3 className="font-bold text-lg mt-2">
         Requests: {log.requests.length}
       </h3>
-      <h4>شناسه پیگیری:‌{log.traceId}</h4>
+      <h4>
+        شناسه پیگیری:
+        {log.traceId}
+      </h4>
       {log.requests.map((request, index) => (
         <div>
           <RequestComponent key={index} request={request} />
