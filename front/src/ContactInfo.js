@@ -16,8 +16,8 @@ const ContactInfo = () => {
       alert("لطفا شرایط و ضوابط را بپذیرید.");
       return;
     }
-    // Handle form submission and proceed to payment via Stripe
-    navigate("/payment");
+    // Handle form submission and proceed to video recording
+    navigate("/video-recording");
   };
 
   return (
@@ -34,7 +34,7 @@ const ContactInfo = () => {
             required
           />
           <input
-            type="tel"
+            type="phone"
             value={phone}
             placeholder="موبایل"
             onChange={(e) => setPhone(e.target.value)}
