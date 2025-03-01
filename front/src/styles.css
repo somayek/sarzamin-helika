@@ -69,3 +69,11 @@ body {
   box-sizing: border-box;
 }
 
+.terms {
+  text-align: right;
+}
+
+.terms input[type="checkbox"] {
+  width: 5%;
+  margin-left: 10px;
+}
