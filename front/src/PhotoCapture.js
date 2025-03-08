@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
 import * as faceapi from "face-api.js";
 import { useNavigate } from "react-router-dom";
-import cv from "@techstark/opencv-js";
+import './PhotoCapture.css'; // Import the CSS file
 
 const PhotoCapture = () => {
   const webcamRef = useRef(null);
@@ -21,6 +21,19 @@ const PhotoCapture = () => {
     loadModels();
   }, []);
 
+  const waitForOpenCV = () => {
+    return new Promise((resolve) => {
+      const checkOpenCV = () => {
+        if (window.cv && window.cv.imread) {
+          resolve();
+        } else {
+          setTimeout(checkOpenCV, 100);
+        }
+      };
+      checkOpenCV();
+    });
+  };
+
   const capturePhoto = async () => {
     const imageSrc = webcamRef.current.getScreenshot();
     setPhoto(imageSrc);
@@ -29,19 +42,30 @@ const PhotoCapture = () => {
     img.src = imageSrc;
     img.onload = async () => {
       const detections = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks();
+      if (detections.length === 0) {
+        alert("No face detected in the picture. Please try again.");
+        return;
+      }
       if (detections.length > 0) {
         const canvas = canvasRef.current;
+        if (!canvas) {
+          console.error("Canvas element not found");
+          return;
+        }
         const displaySize = { width: img.width, height: img.height };
         faceapi.matchDimensions(canvas, displaySize);
         const resizedDetections = faceapi.resizeResults(detections, displaySize);
         faceapi.draw.drawDetections(canvas, resizedDetections);
         faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
 
+        // Wait for OpenCV to be loaded
+        await waitForOpenCV();
+
         // Enhance the photo using OpenCV.js
-        const src = cv.imread(img);
-        const dst = new cv.Mat();
-        cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY, 0);
-        cv.imshow('canvasOutput', dst);
+        const src = window.cv.imread(img);
+        const dst = new window.cv.Mat();
+        window.cv.cvtColor(src, dst, window.cv.COLOR_RGBA2GRAY, 0);
+        window.cv.imshow('canvasOutput', dst);
         src.delete();
         dst.delete();
       }
@@ -72,9 +96,9 @@ const PhotoCapture = () => {
       {loading ? (
         <p>در حال بارگذاری مدل‌ها...</p>
       ) : (
-        <div>
+        <div className="webcam-container">
           {!photo ? (
-            <div>
+            <div className="webcam-wrapper">
               <Webcam
                 audio={false}
                 ref={webcamRef}
@@ -87,13 +111,14 @@ const PhotoCapture = () => {
                   facingMode: "user",
                 }}
               />
+              <img src="/face-outline-guide.svg" alt="Face Outline Guide" className="face-outline-guide" />
               <button onClick={capturePhoto}>گرفتن عکس</button>
             </div>
           ) : (
             <div>
               <h3>پیش‌نمایش عکس</h3>
               <img src={photo} alt="Captured" style={{ width: "100%" }} />
-              <canvas id="canvasOutput" style={{ display: "none" }} />
+              <canvas id="canvasOutput" ref={canvasRef} style={{ display: "none" }} />
               <button onClick={() => setPhoto(null)}>عکس مجدد</button>
               <button onClick={handleNext}>ادامه</button>
             </div>
