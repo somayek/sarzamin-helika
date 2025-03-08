@@ -22,6 +22,7 @@ const QuestionnaireForm = () => {
   const [rules, setRules] = useState([]);
   const [documents, setDocuments] = useState([]);
   const [traceId, setTraceId] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false); // اضافه کردن حالت جدید
   const serverEndpoint = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
@@ -183,6 +184,7 @@ const QuestionnaireForm = () => {
   );
 
   const handleSubmit = useCallback(async () => {
+    setIsSubmitting(true); // تنظیم حالت به true
     await submitRequests();
     saveAuditLog(requests);
   }, [requests, saveAuditLog]);
@@ -284,12 +286,17 @@ const QuestionnaireForm = () => {
         {requests[requests.length - 1].application &&
           requests[requests.length - 1].currentQuestion === null && (
             <div>
-              <button onClick={addRequest} className="add-request-button">
+              <button
+                onClick={addRequest}
+                className="add-request-button"
+                disabled={isSubmitting} // غیرفعال کردن دکمه
+              >
                 افزودن درخواست جدید
               </button>
               <button
                 onClick={() => handleSubmit()}
                 style={{ margin: "0 5px" }}
+                disabled={isSubmitting} // غیرفعال کردن دکمه
               >
                 پایان و نمایش نتیجه
               </button>

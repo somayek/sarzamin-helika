@@ -113,7 +113,7 @@ const DocsBlock = ({ requests, traceId }) => {
           <button onClick={handleDownload}>دانلود PDF</button>
         )}
         &nbsp;
-        <button onClick={handleProceed}>ورود اطلاعات تماس و پرداخت</button>
+        <button onClick={handleProceed}>تشکیل پرونده و ارسال مستندات</button>
       </div>
     </div>
   );
