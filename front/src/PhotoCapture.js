@@ -83,7 +83,6 @@ const PhotoCapture = () => {
       <p>لطفا عکس خود را بگیرید و مطمئن شوید که مطابق با استانداردهای گذرنامه است.</p>
       <p>شرایط عکس گذرنامه:</p>
       <ul>
-        <li>ابعاد: 45mm x 35mm</li>
         <li>صورت باید در مرکز عکس باشد و 70-80% از عکس را پوشش دهد</li>
         <li>پس‌زمینه سفید یا روشن</li>
         <li>حالت چهره خنثی با دهان بسته</li>
@@ -104,10 +103,10 @@ const PhotoCapture = () => {
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
                 width={350}
-                height={450}
+                height={490}
                 videoConstraints={{
                   width: 350,
-                  height: 450,
+                  height: 490,
                   facingMode: "user",
                 }}
               />
