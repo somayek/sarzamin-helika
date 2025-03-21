@@ -56,7 +56,7 @@ const DocsBlock = ({ requests, traceId }) => {
               request.documents.length > 0 && (
                 <div key={index}>
                   <h4>
-                    درخواست شماره {index + 1} - {request.application} برای {request.name}
+                  <text>درخواست شماره {index + 1} - {request.application} برای {request.name}</text>
                   </h4>
                   <ul className="document-list">
                     {request.documents.map((doc, i) =>
